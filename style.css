@@ -1,0 +1,31 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+    /*font-family: 'Open Sans', sans-serif; /*стиль шрифта*/
+    font-family: 'Roboto Condensed'; /*стиль шрифта*/
+
+    h1, h2, h3 {
+        text-align: center;
+        font-style: italic;
+    }
+
+    h1 {
+        font-size: 40px; /*размер шрифта заголовка 1*/
+    }
+
+    h2 {
+        font-size: 30px; /*размер шрифта заголовка 2*/
+        text-decoration: underline; /*подчеркивание шрифта*/
+    }
+
+    h3 {
+        font-size: 27px; /*размер шрифта заголовка 3*/
+    }
+
+    p {
+        font-size: 23px; /*размер шрифта*/
+        text-align: justify; /*выравнивание по ширине*/
+        line-height: 1.6; /*межстрочный интервал*/
+        font-weight: 250; /*вес линий шрифта*/
+        text-indent: 30px; /*отступ каждого нового абзаца*/
+    }
+}
