@@ -13,7 +13,6 @@ body {
 
     background-color: rgba(255, 255, 255, 0.5); /* белый с 50% прозрачностью */
     background-blend-mode: lighten; /* смешивание фона и картинки */
-
     /*font-family: 'Open Sans', sans-serif; /*стиль шрифта*/
     font-family: 'Roboto Condensed'; /*стиль шрифта*/
 
@@ -56,6 +55,14 @@ body {
         line-height: 1.6; /*межстрочный интервал*/
         font-weight: 250; /*вес линий шрифта*/
         text-indent: 10px; /*отступ*/
-        list-style: lower-alpha; /*стиль нумерации*/
+        /*list-style: circle; /*стиль нумерации*/
+    }
+
+    li {
+        font-size: 23px; /*размер шрифта*/
+        line-height: 1.6; /*межстрочный интервал*/
+        font-weight: 250; /*вес линий шрифта*/
+        text-indent: 10px; /*отступ*/
+        /*list-style: disc; /*стиль нумерации*/
     }
 }
