@@ -55,14 +55,14 @@ body {
         line-height: 1.6; /*межстрочный интервал*/
         font-weight: 250; /*вес линий шрифта*/
         text-indent: 10px; /*отступ*/
-        /*list-style: circle; /*стиль нумерации*/
+        list-style: disclosure-closed; /*стиль нумерации*/
     }
 
     li {
-        font-size: 23px; /*размер шрифта*/
-        line-height: 1.6; /*межстрочный интервал*/
-        font-weight: 250; /*вес линий шрифта*/
-        text-indent: 10px; /*отступ*/
-        /*list-style: disc; /*стиль нумерации*/
+        font-size: 23px; размер шрифта
+        line-height: 1.6; межстрочный интервал
+        font-weight: 250; вес линий шрифта
+        text-indent: 10px; отступ
+        list-style: unset; /*стиль нумерации
     }
 }
