@@ -1,11 +1,168 @@
 ﻿<!DOCTYPE html>
-
 <html lang="ru">
 <head>
     <meta charset="utf-8">
     <title>Списки</title>
+    <link rel="icon" href="lists.ico">
+    <link rel="stylesheet" href="lists.css">
 </head>
 <body>
+    <h1>Списки</h1>
+    <ol class="main-list">
+        <li>
+            Photoshop
+            <ul class="latin-list">
+                <li>Интерфейс</li>
+                <li>Эффекты</li>
+                <li>Инструменты</li>
+                <li>Практика</li>
+            </ul>
+        </li>
+        <li>
+            Illustrator
+            <ul class="latin-list">
+                <li>Интерфейс</li>
+                <li>Инструменты</li>
+                <li>Практика</li>
+            </ul>
+        </li>
+        <li>
+            Верстка
+            <ul class="latin-list">
+                <li>
+                    XHTML
+                    <ul class="no-marker">
+                        <li class="circle-marker">Основы</li>
+                        <li>
+                            <span class="circle-marker">Способы верстки:</span>
+                            <ul class="checkboxes">
+                                <li>
+                                    <input type="checkbox" id="table" class="checkbox-input">
+                                    <label for="table">Таблицы</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="frames" class="checkbox-input">
+                                    <label for="frames">Фреймы</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="div" class="checkbox-input">
+                                    <label for="div">Верстка тегами div</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    CSS
+                    <ul class="no-marker">
+                        <li class="circle-marker">Основы</li>
+                        <li class="circle-marker">Перечень свойств</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Flash
+            <ul class="latin-list">
+                <li>Анимация</li>
+                <li>Action Script</li>
+            </ul>
+        </li>
+        <li>
+            CMS
+            <ul class="latin-list">
+                <li>
+                    Word Press
+                    <ul class="no-marker">
+                        <li class="circle-marker-red">Установка</li>
+                        <li>
+                            <span class="circle-marker-red">Основы работы:</span>
+                            <ul class="blue-checkboxes">
+                                <li>
+                                    <input type="checkbox" id="wp_interface" class="blue-input">
+                                    <label for="wp_interface">Интерфейс</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="wp_templates" class="blue-input">
+                                    <label for="wp_templates">Шаблоны</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="wp_content" class="blue-input">
+                                    <label for="wp_content">Контент</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="wp_plugins" class="blue-input">
+                                    <label for="wp_plugins">Плагины</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Joomla
+                    <ul class="no-marker">
+                        <li class="circle-marker-red">Установка</li>
+                        <li>
+                            <span class="circle-marker-red">Основы работы:</span>
+                            <ul class="blue-checkboxes">
+                                <li>
+                                    <input type="checkbox" id="joomla_interface" class="blue-input">
+                                    <label for="joomla_interface">Интерфейс</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="joomla_templates" class="blue-input">
+                                    <label for="joomla_templates">Шаблоны</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="joomla_content" class="blue-input">
+                                    <label for="joomla_content">Контент</label>
+                                </li>
+                                <li class="no-checkbox">
+                                    <span>Расширения:</span>
+                                    <ul class="black-crossboxes">
+                                        <li>
+                                            <input type="checkbox" id="joomla_components" class="black-cross-input">
+                                            <label for="joomla_components">Компоненты</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="joomla_modules" class="black-cross-input">
+                                            <label for="joomla_modules">Модули</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="joomla_plugins" class="black-cross-input">
+                                            <label for="joomla_plugins">Плагины</label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol>
 
+    <script>
+        function initCheckboxes() {
+            const checkboxes = document.querySelectorAll('.checkbox-input, .blue-input, .black-cross-input');
+
+            checkboxes.forEach(checkbox => {
+                const savedState = localStorage.getItem(checkbox.id);
+                if (savedState === 'checked') {
+                    checkbox.checked = true;
+                }
+
+                checkbox.addEventListener('change', function () {
+                    if (this.checked) {
+                        localStorage.setItem(this.id, 'checked');
+                    } else {
+                        localStorage.removeItem(this.id);
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initCheckboxes);
+    </script>
 </body>
 </html>

@@ -1,0 +1,388 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('image/fone_site.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 35px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Основной список с римскими цифрами */
+.main-list {
+    list-style-type: upper-roman;
+    margin-left: 20px;
+    padding-left: 40px;
+    font-size: 30px;
+}
+
+    .main-list > li {
+        margin-bottom: 20px;
+    }
+
+        /* Цвета для основных пунктов */
+        .main-list > li:nth-child(1) {
+            color: red;
+            font-weight: bold;
+        }
+
+        .main-list > li:nth-child(2) {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .main-list > li:nth-child(3) {
+            color: limegreen;
+            font-weight: bold;
+        }
+
+        .main-list > li:nth-child(4) {
+            color: #00BFFF;
+            font-weight: bold;
+        }
+
+        .main-list > li:nth-child(5) {
+            color: #8A2BE2;
+            font-weight: bold;
+        }
+
+    /* Вложенные списки */
+    .main-list ul {
+        margin-top: 10px;
+        padding-left: 40px;
+        color: #000;
+        font-weight: normal;
+    }
+
+/* Списки с латинскими буквами */
+.latin-list {
+    list-style-type: lower-latin !important;
+    padding-left: 40px !important;
+}
+
+/* Списки без маркеров */
+.no-marker {
+    list-style-type: none !important;
+    padding-left: 20px !important;
+}
+
+/* Круглые оранжевые маркеры */
+.circle-marker {
+    position: relative;
+    padding-left: 35px;
+    margin: 10px 0;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+    .circle-marker::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF8C00);
+        border: 2px solid #FFA500;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+/* Круглые красные маркеры */
+.circle-marker-red {
+    position: relative;
+    padding-left: 35px;
+    margin: 10px 0;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+    .circle-marker-red::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #FF6B6B, #FF5252, #FF0000);
+        border: 2px solid #FF5252;
+        box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
+    }
+
+/* Зеленые чекбоксы */
+.checkboxes {
+    list-style: none;
+    padding-left: 40px;
+    margin: 5px 0;
+}
+
+    .checkboxes li {
+        position: relative;
+        margin: 8px 0;
+        padding-left: 40px;
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+    }
+
+.checkbox-input {
+    display: none;
+}
+
+.checkboxes li label {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 26px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+}
+
+    .checkboxes li label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        border: 2px solid #32CD32;
+        border-radius: 4px;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .checkboxes li label::after {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #32CD32;
+        font-size: 18px;
+        font-weight: bold;
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+    }
+
+.checkbox-input:checked + label::after {
+    opacity: 1;
+}
+
+.checkboxes li:hover label::before {
+    background-color: rgba(50, 205, 50, 0.1);
+    border-color: #228B22;
+}
+
+/* Синие чекбоксы */
+.blue-checkboxes {
+    list-style: none;
+    padding-left: 40px;
+    margin: 5px 0;
+}
+
+    .blue-checkboxes li {
+        position: relative;
+        margin: 8px 0;
+        padding-left: 40px;
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+    }
+
+.blue-input {
+    display: none;
+}
+
+.blue-checkboxes li label {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 26px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+}
+
+    .blue-checkboxes li label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        border: 2px solid #0066CC;
+        border-radius: 4px;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .blue-checkboxes li label::after {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0066CC;
+        font-size: 18px;
+        font-weight: bold;
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+    }
+
+.blue-input:checked + label::after {
+    opacity: 1;
+}
+
+.blue-checkboxes li:hover label::before {
+    background-color: rgba(0, 102, 204, 0.1);
+    border-color: #004C99;
+}
+
+/* Черные чекбоксы с крестиками */
+.black-crossboxes {
+    list-style: none;
+    padding-left: 40px;
+    margin: 5px 0;
+}
+
+    .black-crossboxes li {
+        position: relative;
+        margin: 8px 0;
+        padding-left: 40px;
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+    }
+
+/* Для элемента "Расширения:" без чекбокса */
+.blue-checkboxes li.no-checkbox {
+    padding-left: 0;
+    display: block;
+}
+
+    .blue-checkboxes li.no-checkbox > span {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 26px;
+        color: #555;
+    }
+
+/* Вложенные списки в черных чекбоксах */
+.black-crossboxes {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.black-cross-input {
+    display: none;
+}
+
+.black-crossboxes li label {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 26px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+}
+
+    .black-crossboxes li label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        border: 2px solid #333;
+        border-radius: 4px;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .black-crossboxes li label::after {
+        content: "✕";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+    }
+
+.black-cross-input:checked + label::after {
+    opacity: 1;
+}
+
+.black-crossboxes li:hover label::before {
+    background-color: rgba(51, 51, 51, 0.1);
+    border-color: #000;
+}
+
+/* Размеры шрифтов для вложенных элементов */
+.main-list > li > ul {
+    font-size: 28px;
+}
+
+    .main-list > li > ul > li > ul {
+        font-size: 26px;
+    }
+
+        .main-list > li > ul > li > ul > li > ul {
+            font-size: 24px;
+        }
