@@ -35,10 +35,10 @@ body {
     }
 
     p {
-        font-size: 23px; /*размер шрифта*/
+        font-size: 25px; /*размер шрифта*/
         text-align: justify; /*выравнивание по ширине*/
         line-height: 1.6; /*межстрочный интервал*/
-        font-weight: 250; /*вес линий шрифта*/
+        font-weight: 260; /*вес линий шрифта*/
         text-indent: 30px; /*отступ каждого нового абзаца*/
     }
 
@@ -52,17 +52,17 @@ body {
 
     ul {
         font-size: 23px; /*размер шрифта*/
-        line-height: 1.6; /*межстрочный интервал*/
+        line-height: 1.6;/* межстрочный интервал*/
         font-weight: 250; /*вес линий шрифта*/
         text-indent: 10px; /*отступ*/
-        list-style: disclosure-closed; /*стиль нумерации*/
+        /*list-style: disc;*/ /*стиль нумерации*/
     }
 
     li {
-        font-size: 23px; размер шрифта
-        line-height: 1.6; межстрочный интервал
-        font-weight: 250; вес линий шрифта
-        text-indent: 10px; отступ
-        list-style: unset; /*стиль нумерации
+        font-size: 23px; /*размер шрифта*/
+        line-height: 1.6; /*межстрочный интервал*/
+        font-weight: 250; /*вес линий шрифта*/
+        text-indent: 10px; /*отступ*/
+        /*list-style: disc;*/ /*стиль нумерации*/
     }
 }
