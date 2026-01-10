@@ -1,5 +1,4 @@
-﻿
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
     background-image: url('image/fone_site.jpg');
@@ -11,61 +10,31 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     background-blend-mode: lighten;
     font-family: 'Roboto Condensed', sans-serif;
-}
-
-h1, h2, h3 {
-    text-align: center;
-    font-style: italic;
-}
-
-h1 {
-    font-size: 40px;
-}
-
-h2 {
-    font-size: 30px;
-    text-decoration: underline;
-}
-
-h3 {
-    font-size: 27px;
-}
-
-p {
-    font-size: 25px;
-    text-align: justify;
-    line-height: 1.6;
-    font-weight: 300;
-    text-indent: 30px;
-}
-
-ol {
-    font-size: 23px;
-    line-height: 1.6;
-    font-weight: 300;
-    list-style: upper-roman;
-    padding-left: 40px;
-}
-
-ul {
-    font-size: 23px;
-    line-height: 1.6;
-    font-weight: 300;
-    list-style: circle;
-    padding-left: 40px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 table {
-    font-size: 20px;
-    line-height: 1.6;
-    font-weight: 300;
     margin: 0 auto;
     text-align: center;
-    /*border-collapse: collapse;*/ /*убирает двойную границу*/
-    border: solid 2px;
+    
+    border: 2px solid #000;
+    table-layout: fixed; /* для контроля размеров */
 }
 
 th, td {
-    border: solid 1px;
-    padding: 3px 90px;
+    border: 1px solid #000;
+    width: 90px; /* Фиксированная ширина */
+    height: 40px; /* Фиксированная высота вместо */
+    box-sizing: border-box; /* Для правильного расчета размеров */
+}
+
+caption {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    font-style: italic;
 }
