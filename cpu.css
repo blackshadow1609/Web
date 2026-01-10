@@ -1,68 +1,70 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     background-image: url('image/fone_site.jpg');
-    background-size: cover; /* конкретные размеры */
-    /*Сохраняет пропорции изображения (не искажает его)*/
-    /*Масштабирует изображение так, чтобы его ширина ИЛИ высота совпала с размерами контейнера*/
-    /*Обрезает ту часть изображения, которая не влезает в контейнер*/
-
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    padding: 50px; /* отступы для текста, чтобы он был читаемым */
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    font-family: 'Roboto Condensed', sans-serif;
+}
 
-    background-color: rgba(255, 255, 255, 0.5); /* белый с 50% прозрачностью */
-    background-blend-mode: lighten; /* смешивание фона и картинки */
-    /*font-family: 'Open Sans', sans-serif; /*стиль шрифта*/
-    font-family: 'Roboto Condensed'; /*стиль шрифта*/
+h1, h2, h3 {
+    text-align: center;
+    font-style: italic;
+}
 
-    h1, h2, h3 {
-        text-align: center;
-        font-style: italic;
-    }
+h1 {
+    font-size: 40px;
+}
 
-    h1 {
-        font-size: 40px; /*размер шрифта заголовка 1*/
-    }
+h2 {
+    font-size: 30px;
+    text-decoration: underline;
+}
 
-    h2 {
-        font-size: 30px; /*размер шрифта заголовка 2*/
-        text-decoration: underline; /*подчеркивание шрифта*/
-    }
+h3 {
+    font-size: 27px;
+}
 
-    h3 {
-        font-size: 27px; /*размер шрифта заголовка 3*/
-    }
+p {
+    font-size: 25px;
+    text-align: justify;
+    line-height: 1.6;
+    font-weight: 300;
+    text-indent: 30px;
+}
 
-    p {
-        font-size: 25px; /*размер шрифта*/
-        text-align: justify; /*выравнивание по ширине*/
-        line-height: 1.6; /*межстрочный интервал*/
-        font-weight: 260; /*вес линий шрифта*/
-        text-indent: 30px; /*отступ каждого нового абзаца*/
-    }
+ol {
+    font-size: 23px;
+    line-height: 1.6;
+    font-weight: 300;
+    list-style: upper-roman;
+    padding-left: 40px;
+}
 
-    ol {
-        font-size: 23px; /*размер шрифта*/
-        line-height: 1.6; /*межстрочный интервал*/
-        font-weight: 250; /*вес линий шрифта*/
-        text-indent: 10px; /*отступ*/
-        list-style: upper-roman; /*стиль нумерации*/
-    }
+ul {
+    font-size: 23px;
+    line-height: 1.6;
+    font-weight: 300;
+    list-style: circle;
+    padding-left: 40px;
+}
 
-    ul {
-        font-size: 23px; /*размер шрифта*/
-        line-height: 1.6;/* межстрочный интервал*/
-        font-weight: 250; /*вес линий шрифта*/
-        text-indent: 10px; /*отступ*/
-        /*list-style: disc;*/ /*стиль нумерации*/
-    }
+table {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 300;
+    margin: 0 auto;
+    text-align: center;
+    /*border-collapse: collapse;*/ /*убирает двойную границу*/
+    border: solid 2px;
+}
 
-    li {
-        font-size: 23px; /*размер шрифта*/
-        line-height: 1.6; /*межстрочный интервал*/
-        font-weight: 250; /*вес линий шрифта*/
-        text-indent: 10px; /*отступ*/
-        /*list-style: disc;*/ /*стиль нумерации*/
-    }
+th, td {
+    border: solid 1px;
+    padding: 3px 90px;
 }
