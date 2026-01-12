@@ -1,0 +1,1128 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Периодическая система химических элементов Д. И. Менделеева (цветная)</title>
+    <link rel="icon" href="table.ico">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            margin: 20px;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        /* Цветовые категории элементов */
+        .element-cell {
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 5px;
+            min-height: 70px;
+            font-size: 12px;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .element-cell:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                z-index: 10;
+            }
+
+        /* Цвета для различных типов элементов */
+        .alkali-metal {
+            background-color: #ff9999;
+        }
+        /* Щелочные металлы */
+        .alkaline-earth {
+            background-color: #ffcc99;
+        }
+        /* Щелочноземельные */
+        .transition-metal {
+            background-color: #ffcccc;
+        }
+        /* Переходные металлы */
+        .post-transition {
+            background-color: #cccccc;
+        }
+        /* Постпереходные металлы */
+        .metalloid {
+            background-color: #cccc99;
+        }
+        /* Полуметаллы/металлоиды */
+        .nonmetal {
+            background-color: #ccffcc;
+        }
+        /* Неметаллы */
+        .halogen {
+            background-color: #ccffff;
+        }
+        /* Галогены */
+        .noble-gas {
+            background-color: #ccccff;
+        }
+        /* Благородные газы */
+        .lanthanide {
+            background-color: #ffccff;
+        }
+        /* Лантаноиды */
+        .actinide {
+            background-color: #ff99cc;
+        }
+        /* Актиноиды */
+
+        .element-symbol {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .element-number {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .element-mass {
+            text-align: center;
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+
+        .element-name {
+            text-align: center;
+            font-size: 9px;
+            font-style: italic;
+        }
+
+        .periodic-table {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            grid-gap: 3px;
+            margin-bottom: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .group-label {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            padding: 5px 0;
+            background-color: #f5f5f5;
+            border-radius: 3px;
+        }
+
+        .period-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            padding-right: 10px;
+        }
+
+        .lanthanides-table, .actinides-table {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-gap: 3px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lanthanides-title, .actinides-title {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .legend {
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .legend-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #333;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+
+        .legend-text {
+            font-size: 14px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media print {
+            .element-cell {
+                break-inside: avoid;
+                min-height: 60px;
+            }
+
+            .legend {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .periodic-table {
+                grid-template-columns: repeat(18, minmax(50px, 1fr));
+            }
+
+            .element-cell {
+                min-height: 65px;
+                font-size: 11px;
+            }
+
+            .element-symbol {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .periodic-table {
+                grid-template-columns: repeat(18, minmax(45px, 1fr));
+                grid-gap: 2px;
+            }
+
+            .element-cell {
+                min-height: 60px;
+                font-size: 10px;
+                padding: 3px;
+            }
+
+            .element-symbol {
+                font-size: 16px;
+            }
+
+            .element-name {
+                font-size: 8px;
+            }
+        }
+    </style>
+    <style>
+        body {
+            background-image: url('image/himi.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-title">Периодическая система химических элементов Д. И. Менделеева</div>
+        <div class="subtitle">Цветовое кодирование по типам химических элементов</div>
+
+        <!-- Основная таблица -->
+        <div class="periodic-table">
+            <!-- Группы (номера) -->
+            <div class="group-label" style="grid-column: 1;">1</div>
+            <div class="group-label" style="grid-column: 2;">2</div>
+            <div class="group-label" style="grid-column: 3;">3</div>
+            <div class="group-label" style="grid-column: 4;">4</div>
+            <div class="group-label" style="grid-column: 5;">5</div>
+            <div class="group-label" style="grid-column: 6;">6</div>
+            <div class="group-label" style="grid-column: 7;">7</div>
+            <div class="group-label" style="grid-column: 8;">8</div>
+            <div class="group-label" style="grid-column: 9;">9</div>
+            <div class="group-label" style="grid-column: 10;">10</div>
+            <div class="group-label" style="grid-column: 11;">11</div>
+            <div class="group-label" style="grid-column: 12;">12</div>
+            <div class="group-label" style="grid-column: 13;">13</div>
+            <div class="group-label" style="grid-column: 14;">14</div>
+            <div class="group-label" style="grid-column: 15;">15</div>
+            <div class="group-label" style="grid-column: 16;">16</div>
+            <div class="group-label" style="grid-column: 17;">17</div>
+            <div class="group-label" style="grid-column: 18;">18</div>
+
+            <!-- Период 1 -->
+            <div class="element-cell nonmetal" style="grid-column: 1; grid-row: 2;">
+                <div class="element-number">1</div>
+                <div class="element-symbol">H</div>
+                <div class="element-mass">1,008</div>
+                <div class="element-name">Водород</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 2;">
+                <div class="element-number">2</div>
+                <div class="element-symbol">He</div>
+                <div class="element-mass">4,0026</div>
+                <div class="element-name">Гелий</div>
+            </div>
+
+            <!-- Период 2 -->
+            <div class="element-cell alkali-metal" style="grid-column: 1; grid-row: 3;">
+                <div class="element-number">3</div>
+                <div class="element-symbol">Li</div>
+                <div class="element-mass">6,941</div>
+                <div class="element-name">Литий</div>
+            </div>
+            <div class="element-cell alkaline-earth" style="grid-column: 2; grid-row: 3;">
+                <div class="element-number">4</div>
+                <div class="element-symbol">Be</div>
+                <div class="element-mass">9,0122</div>
+                <div class="element-name">Бериллий</div>
+            </div>
+            <div class="element-cell metalloid" style="grid-column: 13; grid-row: 3;">
+                <div class="element-number">5</div>
+                <div class="element-symbol">B</div>
+                <div class="element-mass">10,811</div>
+                <div class="element-name">Бор</div>
+            </div>
+            <div class="element-cell nonmetal" style="grid-column: 14; grid-row: 3;">
+                <div class="element-number">6</div>
+                <div class="element-symbol">C</div>
+                <div class="element-mass">12,011</div>
+                <div class="element-name">Углерод</div>
+            </div>
+            <div class="element-cell nonmetal" style="grid-column: 15; grid-row: 3;">
+                <div class="element-number">7</div>
+                <div class="element-symbol">N</div>
+                <div class="element-mass">14,007</div>
+                <div class="element-name">Азот</div>
+            </div>
+            <div class="element-cell nonmetal" style="grid-column: 16; grid-row: 3;">
+                <div class="element-number">8</div>
+                <div class="element-symbol">O</div>
+                <div class="element-mass">15,999</div>
+                <div class="element-name">Кислород</div>
+            </div>
+            <div class="element-cell halogen" style="grid-column: 17; grid-row: 3;">
+                <div class="element-number">9</div>
+                <div class="element-symbol">F</div>
+                <div class="element-mass">18,998</div>
+                <div class="element-name">Фтор</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 3;">
+                <div class="element-number">10</div>
+                <div class="element-symbol">Ne</div>
+                <div class="element-mass">20,180</div>
+                <div class="element-name">Неон</div>
+            </div>
+
+            <!-- Период 3 -->
+            <div class="element-cell alkali-metal" style="grid-column: 1; grid-row: 4;">
+                <div class="element-number">11</div>
+                <div class="element-symbol">Na</div>
+                <div class="element-mass">22,990</div>
+                <div class="element-name">Натрий</div>
+            </div>
+            <div class="element-cell alkaline-earth" style="grid-column: 2; grid-row: 4;">
+                <div class="element-number">12</div>
+                <div class="element-symbol">Mg</div>
+                <div class="element-mass">24,305</div>
+                <div class="element-name">Магний</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 13; grid-row: 4;">
+                <div class="element-number">13</div>
+                <div class="element-symbol">Al</div>
+                <div class="element-mass">26,982</div>
+                <div class="element-name">Алюминий</div>
+            </div>
+            <div class="element-cell metalloid" style="grid-column: 14; grid-row: 4;">
+                <div class="element-number">14</div>
+                <div class="element-symbol">Si</div>
+                <div class="element-mass">28,086</div>
+                <div class="element-name">Кремний</div>
+            </div>
+            <div class="element-cell nonmetal" style="grid-column: 15; grid-row: 4;">
+                <div class="element-number">15</div>
+                <div class="element-symbol">P</div>
+                <div class="element-mass">30,974</div>
+                <div class="element-name">Фосфор</div>
+            </div>
+            <div class="element-cell nonmetal" style="grid-column: 16; grid-row: 4;">
+                <div class="element-number">16</div>
+                <div class="element-symbol">S</div>
+                <div class="element-mass">32,065</div>
+                <div class="element-name">Сера</div>
+            </div>
+            <div class="element-cell halogen" style="grid-column: 17; grid-row: 4;">
+                <div class="element-number">17</div>
+                <div class="element-symbol">Cl</div>
+                <div class="element-mass">35,453</div>
+                <div class="element-name">Хлор</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 4;">
+                <div class="element-number">18</div>
+                <div class="element-symbol">Ar</div>
+                <div class="element-mass">39,948</div>
+                <div class="element-name">Аргон</div>
+            </div>
+
+            <!-- Период 4 -->
+            <div class="element-cell alkali-metal" style="grid-column: 1; grid-row: 5;">
+                <div class="element-number">19</div>
+                <div class="element-symbol">K</div>
+                <div class="element-mass">39,098</div>
+                <div class="element-name">Калий</div>
+            </div>
+            <div class="element-cell alkaline-earth" style="grid-column: 2; grid-row: 5;">
+                <div class="element-number">20</div>
+                <div class="element-symbol">Ca</div>
+                <div class="element-mass">40,078</div>
+                <div class="element-name">Кальций</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 3; grid-row: 5;">
+                <div class="element-number">21</div>
+                <div class="element-symbol">Sc</div>
+                <div class="element-mass">44,956</div>
+                <div class="element-name">Скандий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 4; grid-row: 5;">
+                <div class="element-number">22</div>
+                <div class="element-symbol">Ti</div>
+                <div class="element-mass">47,867</div>
+                <div class="element-name">Титан</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 5; grid-row: 5;">
+                <div class="element-number">23</div>
+                <div class="element-symbol">V</div>
+                <div class="element-mass">50,942</div>
+                <div class="element-name">Ванадий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 6; grid-row: 5;">
+                <div class="element-number">24</div>
+                <div class="element-symbol">Cr</div>
+                <div class="element-mass">51,996</div>
+                <div class="element-name">Хром</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 7; grid-row: 5;">
+                <div class="element-number">25</div>
+                <div class="element-symbol">Mn</div>
+                <div class="element-mass">54,938</div>
+                <div class="element-name">Марганец</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 8; grid-row: 5;">
+                <div class="element-number">26</div>
+                <div class="element-symbol">Fe</div>
+                <div class="element-mass">55,845</div>
+                <div class="element-name">Железо</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 9; grid-row: 5;">
+                <div class="element-number">27</div>
+                <div class="element-symbol">Co</div>
+                <div class="element-mass">58,933</div>
+                <div class="element-name">Кобальт</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 10; grid-row: 5;">
+                <div class="element-number">28</div>
+                <div class="element-symbol">Ni</div>
+                <div class="element-mass">58,693</div>
+                <div class="element-name">Никель</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 11; grid-row: 5;">
+                <div class="element-number">29</div>
+                <div class="element-symbol">Cu</div>
+                <div class="element-mass">63,546</div>
+                <div class="element-name">Медь</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 12; grid-row: 5;">
+                <div class="element-number">30</div>
+                <div class="element-symbol">Zn</div>
+                <div class="element-mass">65,380</div>
+                <div class="element-name">Цинк</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 13; grid-row: 5;">
+                <div class="element-number">31</div>
+                <div class="element-symbol">Ga</div>
+                <div class="element-mass">69,723</div>
+                <div class="element-name">Галлий</div>
+            </div>
+            <div class="element-cell metalloid" style="grid-column: 14; grid-row: 5;">
+                <div class="element-number">32</div>
+                <div class="element-symbol">Ge</div>
+                <div class="element-mass">72,640</div>
+                <div class="element-name">Германий</div>
+            </div>
+            <div class="element-cell metalloid" style="grid-column: 15; grid-row: 5;">
+                <div class="element-number">33</div>
+                <div class="element-symbol">As</div>
+                <div class="element-mass">74,922</div>
+                <div class="element-name">Мышьяк</div>
+            </div>
+            <div class="element-cell nonmetal" style="grid-column: 16; grid-row: 5;">
+                <div class="element-number">34</div>
+                <div class="element-symbol">Se</div>
+                <div class="element-mass">78,960</div>
+                <div class="element-name">Селен</div>
+            </div>
+            <div class="element-cell halogen" style="grid-column: 17; grid-row: 5;">
+                <div class="element-number">35</div>
+                <div class="element-symbol">Br</div>
+                <div class="element-mass">79,904</div>
+                <div class="element-name">Бром</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 5;">
+                <div class="element-number">36</div>
+                <div class="element-symbol">Kr</div>
+                <div class="element-mass">83,798</div>
+                <div class="element-name">Криптон</div>
+            </div>
+
+            <!-- Период 5 -->
+            <div class="element-cell alkali-metal" style="grid-column: 1; grid-row: 6;">
+                <div class="element-number">37</div>
+                <div class="element-symbol">Rb</div>
+                <div class="element-mass">85,468</div>
+                <div class="element-name">Рубидий</div>
+            </div>
+            <div class="element-cell alkaline-earth" style="grid-column: 2; grid-row: 6;">
+                <div class="element-number">38</div>
+                <div class="element-symbol">Sr</div>
+                <div class="element-mass">87,620</div>
+                <div class="element-name">Стронций</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 3; grid-row: 6;">
+                <div class="element-number">39</div>
+                <div class="element-symbol">Y</div>
+                <div class="element-mass">88,906</div>
+                <div class="element-name">Иттрий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 4; grid-row: 6;">
+                <div class="element-number">40</div>
+                <div class="element-symbol">Zr</div>
+                <div class="element-mass">91,224</div>
+                <div class="element-name">Цирконий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 5; grid-row: 6;">
+                <div class="element-number">41</div>
+                <div class="element-symbol">Nb</div>
+                <div class="element-mass">92,906</div>
+                <div class="element-name">Ниобий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 6; grid-row: 6;">
+                <div class="element-number">42</div>
+                <div class="element-symbol">Mo</div>
+                <div class="element-mass">95,950</div>
+                <div class="element-name">Молибден</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 7; grid-row: 6;">
+                <div class="element-number">43</div>
+                <div class="element-symbol">Tc</div>
+                <div class="element-mass">[98]</div>
+                <div class="element-name">Технеций</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 8; grid-row: 6;">
+                <div class="element-number">44</div>
+                <div class="element-symbol">Ru</div>
+                <div class="element-mass">101,07</div>
+                <div class="element-name">Рутений</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 9; grid-row: 6;">
+                <div class="element-number">45</div>
+                <div class="element-symbol">Rh</div>
+                <div class="element-mass">102,91</div>
+                <div class="element-name">Родий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 10; grid-row: 6;">
+                <div class="element-number">46</div>
+                <div class="element-symbol">Pd</div>
+                <div class="element-mass">106,42</div>
+                <div class="element-name">Палладий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 11; grid-row: 6;">
+                <div class="element-number">47</div>
+                <div class="element-symbol">Ag</div>
+                <div class="element-mass">107,87</div>
+                <div class="element-name">Серебро</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 12; grid-row: 6;">
+                <div class="element-number">48</div>
+                <div class="element-symbol">Cd</div>
+                <div class="element-mass">112,41</div>
+                <div class="element-name">Кадмий</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 13; grid-row: 6;">
+                <div class="element-number">49</div>
+                <div class="element-symbol">In</div>
+                <div class="element-mass">114,82</div>
+                <div class="element-name">Индий</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 14; grid-row: 6;">
+                <div class="element-number">50</div>
+                <div class="element-symbol">Sn</div>
+                <div class="element-mass">118,71</div>
+                <div class="element-name">Олово</div>
+            </div>
+            <div class="element-cell metalloid" style="grid-column: 15; grid-row: 6;">
+                <div class="element-number">51</div>
+                <div class="element-symbol">Sb</div>
+                <div class="element-mass">121,76</div>
+                <div class="element-name">Сурьма</div>
+            </div>
+            <div class="element-cell metalloid" style="grid-column: 16; grid-row: 6;">
+                <div class="element-number">52</div>
+                <div class="element-symbol">Te</div>
+                <div class="element-mass">127,60</div>
+                <div class="element-name">Теллур</div>
+            </div>
+            <div class="element-cell halogen" style="grid-column: 17; grid-row: 6;">
+                <div class="element-number">53</div>
+                <div class="element-symbol">I</div>
+                <div class="element-mass">126,90</div>
+                <div class="element-name">Иод</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 6;">
+                <div class="element-number">54</div>
+                <div class="element-symbol">Xe</div>
+                <div class="element-mass">131,29</div>
+                <div class="element-name">Ксенон</div>
+            </div>
+
+            <!-- Период 6 -->
+            <div class="element-cell alkali-metal" style="grid-column: 1; grid-row: 7;">
+                <div class="element-number">55</div>
+                <div class="element-symbol">Cs</div>
+                <div class="element-mass">132,91</div>
+                <div class="element-name">Цезий</div>
+            </div>
+            <div class="element-cell alkaline-earth" style="grid-column: 2; grid-row: 7;">
+                <div class="element-number">56</div>
+                <div class="element-symbol">Ba</div>
+                <div class="element-mass">137,33</div>
+                <div class="element-name">Барий</div>
+            </div>
+            <div class="element-cell lanthanide" style="grid-column: 3; grid-row: 7;">
+                <div class="element-number">57</div>
+                <div class="element-symbol">La</div>
+                <div class="element-mass">138,91</div>
+                <div class="element-name">Лантан</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 4; grid-row: 7;">
+                <div class="element-number">72</div>
+                <div class="element-symbol">Hf</div>
+                <div class="element-mass">178,49</div>
+                <div class="element-name">Гафний</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 5; grid-row: 7;">
+                <div class="element-number">73</div>
+                <div class="element-symbol">Ta</div>
+                <div class="element-mass">180,95</div>
+                <div class="element-name">Тантал</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 6; grid-row: 7;">
+                <div class="element-number">74</div>
+                <div class="element-symbol">W</div>
+                <div class="element-mass">183,84</div>
+                <div class="element-name">Вольфрам</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 7; grid-row: 7;">
+                <div class="element-number">75</div>
+                <div class="element-symbol">Re</div>
+                <div class="element-mass">186,21</div>
+                <div class="element-name">Рений</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 8; grid-row: 7;">
+                <div class="element-number">76</div>
+                <div class="element-symbol">Os</div>
+                <div class="element-mass">190,23</div>
+                <div class="element-name">Осмий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 9; grid-row: 7;">
+                <div class="element-number">77</div>
+                <div class="element-symbol">Ir</div>
+                <div class="element-mass">192,22</div>
+                <div class="element-name">Иридий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 10; grid-row: 7;">
+                <div class="element-number">78</div>
+                <div class="element-symbol">Pt</div>
+                <div class="element-mass">195,08</div>
+                <div class="element-name">Платина</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 11; grid-row: 7;">
+                <div class="element-number">79</div>
+                <div class="element-symbol">Au</div>
+                <div class="element-mass">196,97</div>
+                <div class="element-name">Золото</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 12; grid-row: 7;">
+                <div class="element-number">80</div>
+                <div class="element-symbol">Hg</div>
+                <div class="element-mass">200,59</div>
+                <div class="element-name">Ртуть</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 13; grid-row: 7;">
+                <div class="element-number">81</div>
+                <div class="element-symbol">Tl</div>
+                <div class="element-mass">204,38</div>
+                <div class="element-name">Таллий</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 14; grid-row: 7;">
+                <div class="element-number">82</div>
+                <div class="element-symbol">Pb</div>
+                <div class="element-mass">207,2</div>
+                <div class="element-name">Свинец</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 15; grid-row: 7;">
+                <div class="element-number">83</div>
+                <div class="element-symbol">Bi</div>
+                <div class="element-mass">208,98</div>
+                <div class="element-name">Висмут</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 16; grid-row: 7;">
+                <div class="element-number">84</div>
+                <div class="element-symbol">Po</div>
+                <div class="element-mass">[209]</div>
+                <div class="element-name">Полоний</div>
+            </div>
+            <div class="element-cell halogen" style="grid-column: 17; grid-row: 7;">
+                <div class="element-number">85</div>
+                <div class="element-symbol">At</div>
+                <div class="element-mass">[210]</div>
+                <div class="element-name">Астат</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 7;">
+                <div class="element-number">86</div>
+                <div class="element-symbol">Rn</div>
+                <div class="element-mass">[222]</div>
+                <div class="element-name">Радон</div>
+            </div>
+
+            <!-- Период 7 -->
+            <div class="element-cell alkali-metal" style="grid-column: 1; grid-row: 8;">
+                <div class="element-number">87</div>
+                <div class="element-symbol">Fr</div>
+                <div class="element-mass">[223]</div>
+                <div class="element-name">Франций</div>
+            </div>
+            <div class="element-cell alkaline-earth" style="grid-column: 2; grid-row: 8;">
+                <div class="element-number">88</div>
+                <div class="element-symbol">Ra</div>
+                <div class="element-mass">[226]</div>
+                <div class="element-name">Радий</div>
+            </div>
+            <div class="element-cell actinide" style="grid-column: 3; grid-row: 8;">
+                <div class="element-number">89</div>
+                <div class="element-symbol">Ac</div>
+                <div class="element-mass">[227]</div>
+                <div class="element-name">Актиний</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 4; grid-row: 8;">
+                <div class="element-number">104</div>
+                <div class="element-symbol">Rf</div>
+                <div class="element-mass">[267]</div>
+                <div class="element-name">Резерфордий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 5; grid-row: 8;">
+                <div class="element-number">105</div>
+                <div class="element-symbol">Db</div>
+                <div class="element-mass">[268]</div>
+                <div class="element-name">Дубний</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 6; grid-row: 8;">
+                <div class="element-number">106</div>
+                <div class="element-symbol">Sg</div>
+                <div class="element-mass">[269]</div>
+                <div class="element-name">Сиборгий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 7; grid-row: 8;">
+                <div class="element-number">107</div>
+                <div class="element-symbol">Bh</div>
+                <div class="element-mass">[270]</div>
+                <div class="element-name">Борий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 8; grid-row: 8;">
+                <div class="element-number">108</div>
+                <div class="element-symbol">Hs</div>
+                <div class="element-mass">[269]</div>
+                <div class="element-name">Хассий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 9; grid-row: 8;">
+                <div class="element-number">109</div>
+                <div class="element-symbol">Mt</div>
+                <div class="element-mass">[278]</div>
+                <div class="element-name">Мейтнерий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 10; grid-row: 8;">
+                <div class="element-number">110</div>
+                <div class="element-symbol">Ds</div>
+                <div class="element-mass">[281]</div>
+                <div class="element-name">Дармштадтий</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 11; grid-row: 8;">
+                <div class="element-number">111</div>
+                <div class="element-symbol">Rg</div>
+                <div class="element-mass">[282]</div>
+                <div class="element-name">Рентгений</div>
+            </div>
+            <div class="element-cell transition-metal" style="grid-column: 12; grid-row: 8;">
+                <div class="element-number">112</div>
+                <div class="element-symbol">Cn</div>
+                <div class="element-mass">[285]</div>
+                <div class="element-name">Коперниций</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 13; grid-row: 8;">
+                <div class="element-number">113</div>
+                <div class="element-symbol">Nh</div>
+                <div class="element-mass">[286]</div>
+                <div class="element-name">Нихоний</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 14; grid-row: 8;">
+                <div class="element-number">114</div>
+                <div class="element-symbol">Fl</div>
+                <div class="element-mass">[289]</div>
+                <div class="element-name">Флеровий</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 15; grid-row: 8;">
+                <div class="element-number">115</div>
+                <div class="element-symbol">Mc</div>
+                <div class="element-mass">[290]</div>
+                <div class="element-name">Московий</div>
+            </div>
+            <div class="element-cell post-transition" style="grid-column: 16; grid-row: 8;">
+                <div class="element-number">116</div>
+                <div class="element-symbol">Lv</div>
+                <div class="element-mass">[293]</div>
+                <div class="element-name">Ливерморий</div>
+            </div>
+            <div class="element-cell halogen" style="grid-column: 17; grid-row: 8;">
+                <div class="element-number">117</div>
+                <div class="element-symbol">Ts</div>
+                <div class="element-mass">[294]</div>
+                <div class="element-name">Теннессин</div>
+            </div>
+            <div class="element-cell noble-gas" style="grid-column: 18; grid-row: 8;">
+                <div class="element-number">118</div>
+                <div class="element-symbol">Og</div>
+                <div class="element-mass">[294]</div>
+                <div class="element-name">Оганессон</div>
+            </div>
+        </div>
+
+        <!-- Лантаноиды -->
+        <div class="lanthanides-title">Лантаноиды</div>
+        <div class="lanthanides-table">
+            <div class="element-cell lanthanide">
+                <div class="element-number">58</div>
+                <div class="element-symbol">Ce</div>
+                <div class="element-mass">140,12</div>
+                <div class="element-name">Церий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">59</div>
+                <div class="element-symbol">Pr</div>
+                <div class="element-mass">140,91</div>
+                <div class="element-name">Празеодим</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">60</div>
+                <div class="element-symbol">Nd</div>
+                <div class="element-mass">144,24</div>
+                <div class="element-name">Неодим</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">61</div>
+                <div class="element-symbol">Pm</div>
+                <div class="element-mass">[145]</div>
+                <div class="element-name">Прометий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">62</div>
+                <div class="element-symbol">Sm</div>
+                <div class="element-mass">150,36</div>
+                <div class="element-name">Самарий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">63</div>
+                <div class="element-symbol">Eu</div>
+                <div class="element-mass">151,96</div>
+                <div class="element-name">Европий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">64</div>
+                <div class="element-symbol">Gd</div>
+                <div class="element-mass">157,25</div>
+                <div class="element-name">Гадолиний</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">65</div>
+                <div class="element-symbol">Tb</div>
+                <div class="element-mass">158,93</div>
+                <div class="element-name">Тербий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">66</div>
+                <div class="element-symbol">Dy</div>
+                <div class="element-mass">162,50</div>
+                <div class="element-name">Диспрозий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">67</div>
+                <div class="element-symbol">Ho</div>
+                <div class="element-mass">164,93</div>
+                <div class="element-name">Гольмий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">68</div>
+                <div class="element-symbol">Er</div>
+                <div class="element-mass">167,26</div>
+                <div class="element-name">Эрбий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">69</div>
+                <div class="element-symbol">Tm</div>
+                <div class="element-mass">168,93</div>
+                <div class="element-name">Тулий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">70</div>
+                <div class="element-symbol">Yb</div>
+                <div class="element-mass">173,05</div>
+                <div class="element-name">Иттербий</div>
+            </div>
+            <div class="element-cell lanthanide">
+                <div class="element-number">71</div>
+                <div class="element-symbol">Lu</div>
+                <div class="element-mass">174,97</div>
+                <div class="element-name">Лютеций</div>
+            </div>
+        </div>
+
+        <!-- Актиноиды -->
+        <div class="actinides-title">Актиноиды</div>
+        <div class="actinides-table">
+            <div class="element-cell actinide">
+                <div class="element-number">90</div>
+                <div class="element-symbol">Th</div>
+                <div class="element-mass">232,04</div>
+                <div class="element-name">Торий</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">91</div>
+                <div class="element-symbol">Pa</div>
+                <div class="element-mass">231,04</div>
+                <div class="element-name">Протактиний</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">92</div>
+                <div class="element-symbol">U</div>
+                <div class="element-mass">238,03</div>
+                <div class="element-name">Уран</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">93</div>
+                <div class="element-symbol">Np</div>
+                <div class="element-mass">[237]</div>
+                <div class="element-name">Нептуний</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">94</div>
+                <div class="element-symbol">Pu</div>
+                <div class="element-mass">[244]</div>
+                <div class="element-name">Плутоний</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">95</div>
+                <div class="element-symbol">Am</div>
+                <div class="element-mass">[243]</div>
+                <div class="element-name">Америций</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">96</div>
+                <div class="element-symbol">Cm</div>
+                <div class="element-mass">[247]</div>
+                <div class="element-name">Кюрий</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">97</div>
+                <div class="element-symbol">Bk</div>
+                <div class="element-mass">[247]</div>
+                <div class="element-name">Берклий</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">98</div>
+                <div class="element-symbol">Cf</div>
+                <div class="element-mass">[251]</div>
+                <div class="element-name">Калифорний</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">99</div>
+                <div class="element-symbol">Es</div>
+                <div class="element-mass">[252]</div>
+                <div class="element-name">Эйнштейний</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">100</div>
+                <div class="element-symbol">Fm</div>
+                <div class="element-mass">[257]</div>
+                <div class="element-name">Фермий</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">101</div>
+                <div class="element-symbol">Md</div>
+                <div class="element-mass">[258]</div>
+                <div class="element-name">Менделевий</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">102</div>
+                <div class="element-symbol">No</div>
+                <div class="element-mass">[259]</div>
+                <div class="element-name">Нобелий</div>
+            </div>
+            <div class="element-cell actinide">
+                <div class="element-number">103</div>
+                <div class="element-symbol">Lr</div>
+                <div class="element-mass">[266]</div>
+                <div class="element-name">Лоуренсий</div>
+            </div>
+        </div>
+
+        <!-- Легенда -->
+        <div class="legend">
+            <div class="legend-title">Легенда цветового кодирования</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color alkali-metal"></div>
+                    <div class="legend-text">Щелочные металлы</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color alkaline-earth"></div>
+                    <div class="legend-text">Щелочноземельные металлы</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color transition-metal"></div>
+                    <div class="legend-text">Переходные металлы</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color post-transition"></div>
+                    <div class="legend-text">Постпереходные металлы</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color metalloid"></div>
+                    <div class="legend-text">Полуметаллы (металлоиды)</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color nonmetal"></div>
+                    <div class="legend-text">Неметаллы</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color halogen"></div>
+                    <div class="legend-text">Галогены</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color noble-gas"></div>
+                    <div class="legend-text">Благородные газы</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color lanthanide"></div>
+                    <div class="legend-text">Лантаноиды</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color actinide"></div>
+                    <div class="legend-text">Актиноиды</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Периодическая таблица химических элементов с цветовым кодированием по типам элементов<br>
+            При наведении курсора на элемент ячейка увеличивается и появляется тень
+        </div>
+    </div>
+
+    <script>
+        // Интерактивность при наведении на элементы
+        document.addEventListener('DOMContentLoaded', function () {
+            const elements = document.querySelectorAll('.element-cell');
+
+            elements.forEach(element => {
+                element.addEventListener('mouseenter', function () {
+                    const symbol = this.querySelector('.element-symbol').textContent;
+                    const name = this.querySelector('.element-name').textContent;
+                    const number = this.querySelector('.element-number').textContent;
+                    const mass = this.querySelector('.element-mass').textContent;
+
+                    console.log(`Элемент: ${name} (${symbol}), номер: ${number}, масса: ${mass}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

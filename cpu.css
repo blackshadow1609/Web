@@ -54,6 +54,12 @@ ul {
     padding-left: 40px;
 }
 
+/*#margin-and-padding {
+    border: solid 1px;
+    margin:20px 50px 150px 250px;*/ /*внешний отступ*/
+    /*padding:50px 0;*/ /*внутренний отступ*/
+/*}*/
+
 table {
     font-size: 20px;
     line-height: 1.6;
@@ -67,4 +73,10 @@ table {
 th, td {
     border: solid 1px;
     padding: 3px 90px;
+}
+thead th {
+    border: solid 1px black;
+    /*padding: 15px 25px;*/
+    background-color:aquamarine; /*цвет заголовка таблицы*/
+    color:blue; /*цвет шрифта в заголовке*/
 }
