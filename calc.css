@@ -1,0 +1,14 @@
+﻿body {
+    background-image: url('image/Windows-XP.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 50px;
+}
+.main-window {
+    border: solid 1px;
+    width: 400px;
+    height: 360px;
+    align-self: center;
+}
