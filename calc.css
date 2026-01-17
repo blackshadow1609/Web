@@ -137,23 +137,84 @@
     }
 
 /*------------------------------------------------------------------*/
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 4px;
+}
+
 .memory-buttons {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-    .memory-buttons > button {
-        width: 50px;
-        height: 40px;
-        margin: 5px;
-    }
-.battery {
-    width: 45px;
+.buttons button {
+    width: 50px;
     height: 40px;
     margin: 5px;
-    box-shadow:inset 1px 1px 0px 0px gray;
+    border: solid 1px darkblue;
+    border-radius: 4px;
+    /* Эффекты нажатия */
+    transition: all 0.1s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer; /* Смена курсора на пальчик */
+}
+
+    .buttons button:active {
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+        transform: translateY(2px);
+        background-color: #e0e0e0;
+    }
+
+.memory-buttons > button, .control-buttons > button {
+    color: red;
+    /* Эффекты нажатия */
+    transition: all 0.1s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+    .memory-buttons > button:active, .control-buttons > button:active {
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+        transform: translateY(2px);
+        background-color: #e0e0e0;
+    }
+
+.battery {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    box-shadow: inset 1px 1px 0px 0px gray;
     border-right: solid 1px white;
     border-bottom: solid 1px white;
+}
+/*------------------------------------------------------------------*/
+.control-and-digital-buttons {
+    width: 80%;
+}
+
+.control-buttons > button {
+    width: 88px;
+    height: 40px;
+    margin: 5px;
+}
+
+.digital-buttons {
+    display: grid;
+    grid-template-rows: repeat(4, 40px);
+    grid-template-columns: repeat(5, 50px);
+    grid-gap: 10.1px 11px;
+    padding: 1px;
+}
+
+.buttons button:hover,
+.memory-buttons > button:hover,
+.control-buttons > button:hover {
+    background-color: #f5f5f5;
 }
 /*------------------------------------------------------------------*/
 .border-left {
