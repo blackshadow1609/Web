@@ -9,24 +9,29 @@
 </head>
 <body>
     <h1>JavaScript PD_411</h1>
+    <h2>Factorial</h2>
+    <input type="number" id="factorial-source" min=0 placeholder="Исходное число для вычисления Факториала" onchange="Factorial2()" />
+    <div id="factorial-result"></div>
+    <script src="script.js"></script>   <!--подключение файла script.js-->
     <script>
         console.log("Hello World!");
-        /*alert("Hello usveri");*/
+        //alert("Hello usveri");
         //let data = prompt("Введите данные: ");
         //console.log(data);
         //document.write("Ваши данные сохранены!");
-        let variable;
-        var v;
-        const PI = 3.14;
-
-        let hello = "Hello";
-        let world = "World!";
-        document.write(hello + world);
-        document.write("5" * 5);
-        document.write("5" + 5);
-        document.write("5" - 5);
-        document.write("5" / 0);
-
+        //let variable;
+        //var v;
+        //const PI = 3.14;
+        //let hello = "Hello";
+        //let world = "World!";
+        //document.write(hello + world);
+        //document.write("5" * 5);
+        //document.write("5" + 5);
+        //document.write("5" - 5);
+        //document.write("5" / 0);
+        //let n = prompt("Введите число: ");
+        //document.write(`<hr>${n} ! = ${Factorial(n)}<hr>`);
+        //Factorial2();
     </script>
 </body>
 </html>
@@ -37,8 +42,10 @@
     Примитивы.
     Типы данных в языке JavaScript разделяются на примитивные типы и объекты. В свою очередь примитивные типы можно разделить на числовые типы и не числовые типы.
     -----К числовым типам относятся:
-    а) Number - представляет собой вещественное число двойной точности, так же как Double в С++.
+    а) Number - представляет собой вещественное число двойной точности, так же как Double в С++. (занимает 8 байт памяти)
     б) Bigint - представляет собой целое число неограниченного размера. Реализует длинную арифметику.
+    Длиная арифметика это подход, при котором число не ограничевается каким то объемом памяти, а ограничивается лишь объемом свободной памяти компьютера.
+    В длиной арифметике проблема арифметического переполнения, решена динамическим увеличением разрядности числа.
 
     -----К не числовым типам относятся:
     а) String - строки. Строковую константу можно создать одинарными, двойными либо обратными кавычками. Пара одинарных или двойных кавычек равнозначна. Обратные одинарные кавычки используются при интерпаляции строк.

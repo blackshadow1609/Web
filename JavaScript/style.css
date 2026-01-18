@@ -20,6 +20,9 @@ body {
     h1 {
         font-size: 40px; /*размер шрифта заголовка 1*/
     }
+    h2 {
+        font-size: 38px; /*размер шрифта заголовка 2*/
+    }
 
     ol {
         font-size: 35px; /*размер шрифта*/
@@ -28,5 +31,8 @@ body {
         text-indent: 10px; /*отступ*/
         list-style: decimal; /*стиль нумерации*/
     }
-    
+
+    input {
+        font-size: 30px;
+    }
 }

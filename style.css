@@ -21,12 +21,13 @@ body {
         font-size: 40px; /*размер шрифта заголовка 1*/
     }
 
-    ol {
+    ol, ul, li {
         font-size: 35px; /*размер шрифта*/
         line-height: 1.6; /*межстрочный интервал*/
         font-weight: 400; /*вес линий шрифта*/
         text-indent: 10px; /*отступ*/
         list-style: decimal; /*стиль нумерации*/
     }
+    
     
 }
