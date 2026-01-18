@@ -9,9 +9,138 @@
 </head>
 <body>
     <h1>JavaScript PD_411</h1>
-    <h2>Factorial</h2>
-    <input type="number" id="factorial-source" min=0 placeholder="Исходное число для вычисления Факториала" onchange="Factorial2()" />
-    <div id="factorial-result"></div>
+    <!--<h2>Factorial</h2>-->
+    <details>
+        <summary>Factorial</summary>
+        <input type="number" id="factorial-source" min=0 placeholder="Исходное число для вычисления Факториала" onchange="Factorial2()" />
+        <div id="factorial-result"></div>
+    </details>
+    <details>
+        <summary>Power</summary>
+        <input type="number" id="power-base" placeholder="Основание" min="-999" max="999" onchange="calculatePower()" />
+        <input type="number" id="power-exponent" placeholder="Показатель степени" min="-999" max="999" onchange="calculatePower()" />
+        <div id="power-result"></div>
+        <script>
+            function calculatePower() {
+                const base = document.getElementById('power-base').value;
+                const exponent = document.getElementById('power-exponent').value;
+                const resultElement = document.getElementById('power-result');
+
+                if (base === '' || exponent === '') {
+                    resultElement.innerHTML = '';
+                    return;
+                }
+
+                const numBase = parseFloat(base);
+                const numExponent = parseFloat(exponent);
+                const result = Math.pow(numBase, numExponent);
+
+                resultElement.innerHTML = `Результат: ${numBase}<sup>${numExponent}</sup> = ${result}`;
+            }
+        </script>
+    </details>
+    <details>
+        <summary>Fibonacci Series</summary>
+        <div>
+            <label>
+                <input type="radio" name="fibonacci-type" value="limit" checked onchange="toggleFibonacciInput()" />
+                По пределу (максимальное число)
+            </label>
+            <label>
+                <input type="radio" name="fibonacci-type" value="count" onchange="toggleFibonacciInput()" />
+                По количеству членов
+            </label>
+        </div>
+        <input type="number" id="fibonacci-limit" placeholder="Максимальное число в ряде" min="0" onchange="calculateFibonacci()" />
+        <input type="number" id="fibonacci-count" placeholder="Количество членов ряда" min="1" style="display: none;" onchange="calculateFibonacci()" />
+        <div id="fibonacci-result"></div>
+
+        <script>
+            function toggleFibonacciInput() {
+                const type = document.querySelector('input[name="fibonacci-type"]:checked').value;
+                const limitInput = document.getElementById('fibonacci-limit');
+                const countInput = document.getElementById('fibonacci-count');
+
+                if (type === 'limit') {
+                    limitInput.style.display = '';
+                    countInput.style.display = 'none';
+                    limitInput.value = '';
+                    countInput.value = '';
+                } else {
+                    limitInput.style.display = 'none';
+                    countInput.style.display = '';
+                    limitInput.value = '';
+                    countInput.value = '';
+                }
+                document.getElementById('fibonacci-result').innerHTML = '';
+            }
+
+            function calculateFibonacci() {
+                const type = document.querySelector('input[name="fibonacci-type"]:checked').value;
+                const limitInput = document.getElementById('fibonacci-limit');
+                const countInput = document.getElementById('fibonacci-count');
+                const resultElement = document.getElementById('fibonacci-result');
+
+                let value;
+                if (type === 'limit') {
+                    value = limitInput.value;
+                    if (value === '') {
+                        resultElement.innerHTML = '';
+                        return;
+                    }
+                    generateFibonacciByLimit(parseInt(value));
+                } else {
+                    value = countInput.value;
+                    if (value === '') {
+                        resultElement.innerHTML = '';
+                        return;
+                    }
+                    generateFibonacciByCount(parseInt(value));
+                }
+            }
+
+            function generateFibonacciByLimit(limit) {
+                if (limit < 0) {
+                    document.getElementById('fibonacci-result').innerHTML = 'Предел должен быть неотрицательным';
+                    return;
+                }
+
+                let fib = [0, 1];
+                let next;
+
+                if (limit === 0) {
+                    fib = [0];
+                } else {
+                    while ((next = fib[fib.length - 1] + fib[fib.length - 2]) <= limit) {
+                        fib.push(next);
+                    }
+                }
+
+                document.getElementById('fibonacci-result').innerHTML =
+                    `Ряд Фибоначчи до ${limit}:<br><strong>${fib.join(', ')}</strong>`;
+            }
+
+            function generateFibonacciByCount(count) {
+                if (count < 1) {
+                    document.getElementById('fibonacci-result').innerHTML = 'Количество должно быть не меньше 1';
+                    return;
+                }
+
+                let fib = [];
+                if (count >= 1) fib.push(0);
+                if (count >= 2) fib.push(1);
+
+                for (let i = 2; i < count; i++) {
+                    fib.push(fib[i - 1] + fib[i - 2]);
+                }
+
+                document.getElementById('fibonacci-result').innerHTML =
+                    `Первые ${count} чисел ряда Фибоначчи:<br><strong>${fib.join(', ')}</strong>`;
+            }
+
+            toggleFibonacciInput();
+        </script>
+    </details>
     <script src="script.js"></script>   <!--подключение файла script.js-->
     <script>
         console.log("Hello World!");

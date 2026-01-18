@@ -20,6 +20,7 @@ body {
     h1 {
         font-size: 40px; /*размер шрифта заголовка 1*/
     }
+
     h2 {
         font-size: 38px; /*размер шрифта заголовка 2*/
     }
@@ -30,6 +31,11 @@ body {
         font-weight: 400; /*вес линий шрифта*/
         text-indent: 10px; /*отступ*/
         list-style: decimal; /*стиль нумерации*/
+    }
+
+    summary {
+        font-size: 35px; /*размер шрифта*/
+        font-weight: 500; /*вес линий шрифта*/
     }
 
     input {
