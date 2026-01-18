@@ -1,0 +1,44 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-image: url('image/fone_site.jpg');
+    background-size: cover; /* конкретные размеры */
+    /*Сохраняет пропорции изображения (не искажает его)*/
+    /*Масштабирует изображение так, чтобы его ширина ИЛИ высота совпала с размерами контейнера*/
+    /*Обрезает ту часть изображения, которая не влезает в контейнер*/
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 50px; /* отступы для текста, чтобы он был читаемым */
+
+    background-color: rgba(255, 255, 255, 0.5); /* белый с 50% прозрачностью */
+    background-blend-mode: lighten; /* смешивание фона и картинки */
+    /*font-family: 'Open Sans', sans-serif; /*стиль шрифта*/
+    font-family: 'Roboto Condensed'; /*стиль шрифта*/
+
+    h1 {
+        font-size: 40px; /*размер шрифта заголовка 1*/
+    }
+
+    h2 {
+        font-size: 38px; /*размер шрифта заголовка 2*/
+    }
+
+    ol {
+        font-size: 35px; /*размер шрифта*/
+        line-height: 1.6; /*межстрочный интервал*/
+        font-weight: 400; /*вес линий шрифта*/
+        text-indent: 10px; /*отступ*/
+        list-style: decimal; /*стиль нумерации*/
+    }
+
+    summary {
+        font-size: 35px; /*размер шрифта*/
+        font-weight: 500; /*вес линий шрифта*/
+    }
+
+    input {
+        font-size: 30px;
+    }
+}
