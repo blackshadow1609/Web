@@ -39,6 +39,29 @@ body {
     }
 
     input {
-        font-size: 30px;
+        font-size: 20px;
+        margin: 15px;
     }
+    /*------------------------------------------------------*/
+    #photo-and-color {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #photo-container {
+        border: solid 1px;
+        width: 400px;
+        height: 300px;
+        margin: 15px;
+    }
+
+    #photo {
+        width: 400px;
+        height: 300px;
+    }
+    #color-sampe {
+        width: 150px;
+        height: 150px;
+    }
+    
 }
