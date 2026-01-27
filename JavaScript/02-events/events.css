@@ -1,13 +1,11 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    background-image: url('image/fone_site.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-position: center;
     padding: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
     background-blend-mode: lighten;
     font-family: 'Roboto Condensed';
 }
@@ -40,13 +38,13 @@ input {
 /*------------------------------------------------------*/
 .dark {
     color: #C8C8C8;
-    background-image: url('image/fone_site_2.jpg');
+    background-image: url('image/fone_site_black.jpg');
     background-attachment: fixed;
 }
 
 .white {
     color: black;
-    background-image: url('image/fone_site.jpg');
+    background-image: url('image/fone_site_white.jpg');
     background-attachment: fixed;
 }
 
@@ -77,19 +75,17 @@ input {
 #photo {
     width: 400px;
     height: 300px;
-    object-fit: cover; /* Добавьте это для правильного отображения загруженных фото */
+    object-fit: cover; /* Для правильного отображения загруженных фото */
 }
 
-#color-sample { /* Исправлена опечатка: было color-sampe */
+#color-sample { 
     width: 200px;
     height: 200px;
-    border: 1px solid #ccc; /* Добавьте рамку для видимости */
 }
 
 .block {
     margin: 10px;
     padding: 15px;
-    border: 1px solid #ddd;
     border-radius: 5px;
 }
 /*----------------------------------------------------------------*/
