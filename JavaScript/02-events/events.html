@@ -1,35 +1,43 @@
 ﻿<!DOCTYPE html>
-
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>JavaScript PD_411</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
     <link rel="icon" href="/javascript.ico">
     <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <div id="header">
+<body class="white">
+    <header id="header">
         <div>Header</div>
-        <div id="switch-background" onclick="switchBackground()"></div>
+        <button onclick="switchBackground()" style="background: none; border: none; cursor: pointer;">
+            <img src="image/moon.png" id="switch-background" alt="Переключить тему">
+        </button>
+    </header>
 
-    </div>
-    <!--------------------------------------------------------->
-    <h1>Events</h1>
+    <main>
+        <h1>Events</h1>
 
-    <div id="photo-and-color">
-        <div id="select-photo" class="block">
-            <div id="photo-container">
-                <img alt="Фото студента" title="Фото" id="photo">
-            </div>
-            <input type="file" id="image-file" onchange="setImage()">
+        <div id="photo-and-color">
+            <section id="select-photo" class="block">
+                <h2>Выберите фото</h2>
+                <div id="photo-container">
+                    <img alt="Фото студента" title="Фото" id="photo" src="image/placeholder.jpg">
+                </div>
+                <input type="file" id="image-file" onchange="setImage()" accept="image/*">
+            </section>
+
+            <section id="select-color" class="block">
+                <h2>Выберите цвет</h2>
+                <div>
+                    <input type="color" id="choose-color" onchange="setBackground()">
+                    <label for="choose-color">Выберите Ваш любимый цвет</label>
+                </div>
+                <div id="color-sample"></div>
+            </section>
         </div>
-        <!--------------------------------------------------------->
-        <br />
-        <div id="select-color" class="block">
-            <input type="color" id="choose-color" onchange="setBackground()"><label for="choose-color">Выберите Ваш любимый цвет</label>
-            <div id="color-sample"></div>
-        </div>
-    </div>
+    </main>
+
     <script src="functions.js"></script>
 </body>
 </html>

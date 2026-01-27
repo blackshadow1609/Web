@@ -2,66 +2,94 @@
 
 body {
     background-image: url('image/fone_site.jpg');
-    background-size: cover; /* конкретные размеры */
-    /*Сохраняет пропорции изображения (не искажает его)*/
-    /*Масштабирует изображение так, чтобы его ширина ИЛИ высота совпала с размерами контейнера*/
-    /*Обрезает ту часть изображения, которая не влезает в контейнер*/
-
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    padding: 50px; /* отступы для текста, чтобы он был читаемым */
-
-    background-color: rgba(255, 255, 255, 0.5); /* белый с 50% прозрачностью */
-    background-blend-mode: lighten; /* смешивание фона и картинки */
-    /*font-family: 'Open Sans', sans-serif; /*стиль шрифта*/
-    font-family: 'Roboto Condensed'; /*стиль шрифта*/
-
-    h1 {
-        font-size: 40px; /*размер шрифта заголовка 1*/
-    }
-
-    h2 {
-        font-size: 38px; /*размер шрифта заголовка 2*/
-    }
-
-    ol {
-        font-size: 35px; /*размер шрифта*/
-        line-height: 1.6; /*межстрочный интервал*/
-        font-weight: 400; /*вес линий шрифта*/
-        text-indent: 10px; /*отступ*/
-        list-style: decimal; /*стиль нумерации*/
-    }
-
-    summary {
-        font-size: 35px; /*размер шрифта*/
-        font-weight: 500; /*вес линий шрифта*/
-    }
-
-    input {
-        font-size: 20px;
-        margin: 15px;
-    }
-    /*------------------------------------------------------*/
-    #photo-and-color {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    #photo-container {
-        border: solid 1px;
-        width: 400px;
-        height: 300px;
-        margin: 15px;
-    }
-
-    #photo {
-        width: 400px;
-        height: 300px;
-    }
-    #color-sampe {
-        width: 150px;
-        height: 150px;
-    }
-    
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    font-family: 'Roboto Condensed';
 }
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 38px;
+}
+
+ol {
+    font-size: 35px;
+    line-height: 1.6;
+    font-weight: 400;
+    text-indent: 10px;
+    list-style: decimal;
+}
+
+summary {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+input {
+    font-size: 20px;
+    margin: 15px;
+}
+/*------------------------------------------------------*/
+.dark {
+    color: #C8C8C8;
+    background-image: url('image/fone_site_2.jpg');
+    background-attachment: fixed;
+}
+
+.white {
+    color: black;
+    background-image: url('image/fone_site.jpg');
+    background-attachment: fixed;
+}
+
+#header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#switch-background {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+/*------------------------------------------------------*/
+#photo-and-color {
+    display: flex;
+    justify-content: space-between;
+}
+
+#photo-container {
+    border: solid 1px;
+    width: 400px;
+    height: 300px;
+    margin: 15px;
+}
+
+#photo {
+    width: 400px;
+    height: 300px;
+    object-fit: cover; /* Добавьте это для правильного отображения загруженных фото */
+}
+
+#color-sample { /* Исправлена опечатка: было color-sampe */
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc; /* Добавьте рамку для видимости */
+}
+
+.block {
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+/*----------------------------------------------------------------*/

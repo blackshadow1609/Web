@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript PD_411</title>
+    <link rel="icon" href="/javascript.ico">
+    <link rel="stylesheet" href="geometry.css" />
+</head>
+<body>
+    <h1>Geometry</h1>
+
+    <details>
+        <summary>Square</summary>
+        <input type="number" id="square-size" min=0 max=50 placeholder="Введите размер квадрата (1-50)" oninput="drawSquare()" />
+        <div id="square-result"></div>
+    </details>
+
+    <details>
+        <summary>Triangle 1</summary>
+        <input type="number" id="triangle-size" min=0 max=50 placeholder="Введите высоту треугольника (1-50)" oninput="drawTriangle()" />
+        <div id="triangle-result"></div>
+    </details>
+
+    <details>
+        <summary>Triangle 2</summary>
+        <input type="number" id="triangle-inverted" min=0 max=50 placeholder="Введите высоту треугольника" oninput="drawInvertedTriangle()" />
+        <div id="triangle-inverted-result"></div>
+    </details>
+
+    <details>
+        <summary>Triangle 3</summary>
+        <input type="number" id="triangle-right" min=0 max=50 placeholder="Введите высоту треугольника (1-50)" oninput="drawRightTriangle()" />
+        <div id="triangle-right-result"></div>
+    </details>
+
+    <details>
+        <summary>Triangle 4</summary>
+        <input type="number" id="triangle-left" min=0 max=50 placeholder="Введите высоту треугольника (1-50)" oninput="drawLeftTriangle()" />
+        <div id="triangle-left-result"></div>
+    </details>
+
+    <details>
+        <summary>Romb</summary>
+        <input type="number" id="diamond-size" min=0 max=50 placeholder="Введите высоту половины ромба (1-25)" oninput="drawDiamond()" />
+        <div id="diamond-result"></div>
+    </details>
+
+    <details>
+        <summary>Chess Board</summary>
+        <div style="margin-bottom: 10px;">
+            <label>Rows: </label>
+            <input type="number" id="rows2" min=2 max=10 value="4" oninput="drawBorderedGrid()" />
+            <label style="margin-left: 15px;">Columns: </label>
+            <input type="number" id="cols2" min=2 max=10 value="4" oninput="drawBorderedGrid()" />
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Cell size (width/height): </label>
+            <input type="number" id="cell-size" min=2 max=8 value="4" oninput="drawBorderedGrid()" />
+        </div>
+        <div id="bordered-grid-result"></div>
+    </details>
+    <details>
+        <summary>Pascal's Pyramid (Треугольник Паскаля)</summary>
+        <div style="margin-bottom: 10px;">
+            <label>Rows (1-15): </label>
+            <input type="number" id="pascal-rows" min=1 max=15 value="5" oninput="drawPascalPyramid()" />
+        </div>
+        <div id="pascal-result"></div>
+    </details>
+
+    <!-- Подключение JavaScript файла -->
+    <script src="geometry.js"></script>
+</body>
+</html>
