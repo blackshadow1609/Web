@@ -36,27 +36,29 @@ input {
     margin: 15px;
 }
 /*------------------------------------------------------*/
+.dark, .white {
+    transition-property: color, background;
+    transition-timing-function: ease;
+}
+
 .dark {
     color: #C8C8C8;
-    background-image: url('image/fone_site_black_2.jpg');
+    background-image: url('image/fone_site_black_1.jpg');
     background-attachment: fixed;
-    transition: color 3s, background 3s;
 }
 
     .dark #switch-background {
         filter: brightness(0) invert(1);
-        
     }
 
 .white {
     color: black;
     background-image: url('image/fone_site_white.jpg');
     background-attachment: fixed;
-    transition: color 3s, background 3s;
 }
 
 #header {
-    padding: 15px;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
 }
@@ -65,6 +67,7 @@ input {
     width: 30px;
     height: 30px;
     cursor: pointer;
+    margin: 0px 16px;
 }
 /*------------------------------------------------------*/
 #photo-and-color {
@@ -96,3 +99,4 @@ input {
     border-radius: 5px;
 }
 /*----------------------------------------------------------------*/
+

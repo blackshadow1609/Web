@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events</title>
     <link rel="icon" href="/javascript.ico">
-    <link rel="stylesheet" href="events.css" />
+    <link rel="stylesheet" href="events.css">
 </head>
 <body class="white">
     <header id="header">
         <div>Header</div>
+        <div>
+            <label for="delay">Delay: </label>
+            <input type="number" id="delay" min="1" max="5" value="3">
         <button onclick="switchBackground()" style="background: none; border: none; cursor: pointer;">
             <img src="image/moon.png" id="switch-background" alt="Переключить тему">
         </button>
+        </div>
     </header>
 
     <main>
