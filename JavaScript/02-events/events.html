@@ -10,35 +10,105 @@
 <body class="white">
     <header id="header">
         <div>Header</div>
+        <span id="mouse"></span>
         <div>
             <label for="delay">Delay: </label>
             <input type="number" id="delay" min="1" max="5" value="3">
-        <button onclick="switchBackground()" style="background: none; border: none; cursor: pointer;">
-            <img src="image/moon.png" id="switch-background" alt="Переключить тему">
-        </button>
+            <button onclick="switchBackground()" style="background: none; border: none; cursor: pointer;">
+                <img src="image/moon.png" id="switch-background" alt="Переключить тему">
+            </button>
         </div>
     </header>
 
     <main>
         <h1>Events</h1>
 
-        <div id="photo-and-color">
-            <section id="select-photo" class="block">
-                <h2>Выберите фото</h2>
-                <div id="photo-container">
-                    <img alt="Фото студента" title="Фото" id="photo" src="image/placeholder.jpg">
-                </div>
-                <input type="file" id="image-file" onchange="setImage()" accept="image/*">
-            </section>
+        <details>
+            <summary>Image & Color</summary>
+            <div id="photo-and-color">
+                <section id="select-photo" class="block">
+                    <h2>Выберите фото</h2>
+                    <div id="photo-container">
+                        <img alt="Фото студента" title="Фото" id="photo" src="image/placeholder.jpg">
+                    </div>
+                    <input type="file" id="image-file" onchange="setImage()" accept="image/*">
+                </section>
 
-            <section id="select-color" class="block">
-                <h2>Выберите цвет</h2>
-                <div>
-                    <input type="color" id="choose-color" onchange="setBackground()">
-                    <label for="choose-color">Выберите Ваш любимый цвет</label>
-                </div>
-                <div id="color-sample"></div>
-            </section>
+                <section id="select-color" class="block">
+                    <h2>Выберите цвет</h2>
+                    <div>
+                        <input type="color" id="choose-color" onchange="setBackground()">
+                        <label for="choose-color">Выберите Ваш любимый цвет</label>
+                    </div>
+                    <div id="color-sample"></div>
+                </section>
+            </div>
+        </details>
+
+        <details>
+            <h2>Arrays</h2>
+            <summary>Arrays</summary>
+            <script>
+                let arr = [3, 5, 8, 13, 21];
+                console.log(arr);
+
+                let values = [true, false, '+', 3.14, "Hello", 2.7];
+                document.write(`<pre>`);
+                for (let i = 0; i < arr.length; i++) {
+                    document.write(`${arr[i]}\t`);
+                }
+                document.write(`</pre>`);
+                console.log(values);
+                console.table(values);
+
+                let matrix =
+                    [
+                        [1, 2, 3],
+                        [4, 5, 6],
+                        [7, 8, 9],
+
+                    ];
+                document.write(`<pre>`);
+
+                matrix.forEach((element) => document.write(element));
+                document.writeln();
+                for (let i = 0; i < matrix.length; i++) {
+                    for (let j = 0; j < matrix[i].length; j++) {
+                        document.write(`${matrix[i][j]}\t`);
+                    }
+                    document.writeln();
+                }
+                document.write(`</pre>`);
+                console.log(matrix);
+                console.table(matrix);
+
+                let jaggedArr =
+                    [
+                        [3, 5, 8, 13, 21],
+                        ["Хорошо", "живет", "на", "свете", "Винни", "Пух"],
+                        [34, 55, 89,]
+                    ];
+                console.log(jaggedArr);
+                console.table(jaggedArr);
+            </script>
+        </details>
+
+        <div id="full-time"></div>
+        <div id="clock">
+        <h2>Time</h2>
+            <div id="current-time">
+                <span id="hours"></span>:
+                <span id="minutes"></span>:
+                <span id="seconds"></span>
+            </div>
+            <div id="current-date">
+                <span id="years"></span>/
+                <span id="months"></span>/
+                <span id="days"></span>
+            </div>
+            <div id="day-of-week"></div>
+            <input type="checkbox" id="show-date"><label for="show-date">Показать дату</label>
+            <input type="checkbox" id="show-weekday"><label for="show-weekday">Показать день недели</label>
         </div>
     </main>
 
