@@ -14,102 +14,95 @@
         <div>
             <label for="delay">Delay: </label>
             <input type="number" id="delay" min="1" max="5" value="3">
-            <button onclick="switchBackground()" style="background: none; border: none; cursor: pointer;">
-                <img src="image/moon.png" id="switch-background" alt="Переключить тему">
+            <button id="theme-switcher" style="background: none; border: none; cursor: pointer;">
+                <img src="image/moon.png" id="switch-background" alt="Переключить тему" aria-label="Переключить светлую/темную тему">
             </button>
         </div>
     </header>
-    <!--------------------------------------------------------------------------------------->
+
     <main>
         <h1>Events</h1>
 
         <details>
-            <summary>Image & Color</summary>
+            <summary>
+                <h2>Image & Color</h2>
+            </summary>
             <div id="photo-and-color">
                 <section id="select-photo" class="block">
-                    <h2>Выберите фото</h2>
+                    <h3>Выберите фото</h3>
                     <div id="photo-container">
                         <img alt="Фото студента" title="Фото" id="photo" src="image/placeholder.jpg">
                     </div>
-                    <input type="file" id="image-file" onchange="setImage()" accept="image/*">
+                    <input type="file" id="image-file" accept="image/*">
                 </section>
 
                 <section id="select-color" class="block">
-                    <h2>Выберите цвет</h2>
+                    <h3>Выберите цвет</h3>
                     <div>
-                        <input type="color" id="choose-color" onchange="setBackground()">
+                        <input type="color" id="choose-color">
                         <label for="choose-color">Выберите Ваш любимый цвет</label>
                     </div>
                     <div id="color-sample"></div>
                 </section>
             </div>
         </details>
-        <!--------------------------------------------------------------------------------------->
+
         <details>
-            <h2>Arrays</h2>
-            <summary>Arrays</summary>
-            <script>
-                let arr = [3, 5, 8, 13, 21];
-                console.log(arr);
-
-                let values = [true, false, '+', 3.14, "Hello", 2.7];
-                document.write(`<pre>`);
-                for (let i = 0; i < arr.length; i++) {
-                    document.write(`${arr[i]}\t`);
-                }
-                document.write(`</pre>`);
-                console.log(values);
-                console.table(values);
-
-                let matrix =
-                    [
-                        [1, 2, 3],
-                        [4, 5, 6],
-                        [7, 8, 9],
-
-                    ];
-                document.write(`<pre>`);
-
-                matrix.forEach((element) => document.write(element));
-                document.writeln();
-                for (let i = 0; i < matrix.length; i++) {
-                    for (let j = 0; j < matrix[i].length; j++) {
-                        document.write(`${matrix[i][j]}\t`);
-                    }
-                    document.writeln();
-                }
-                document.write(`</pre>`);
-                console.log(matrix);
-                console.table(matrix);
-
-                let jaggedArr =
-                    [
-                        [3, 5, 8, 13, 21],
-                        ["Хорошо", "живет", "на", "свете", "Винни", "Пух"],
-                        [34, 55, 89,]
-                    ];
-                console.log(jaggedArr);
-                console.table(jaggedArr);
-            </script>
+            <summary>
+                <h2>Arrays</h2>
+            </summary>
+            <div id="arrays-output"></div>
         </details>
-        <!--------------------------------------------------------------------------------------->
-        <h2>Time</h2>
-        <div id="current-time">
-            <div id="full-time"></div>
-            <div id="clock">
-                <span id="hours"></span>:
-                <span id="minutes"></span>:
-                <span id="seconds"></span>
+
+        <details>
+            <summary>
+                <h2>Time</h2>
+            </summary>
+            <div id="time-switcher-container">
+                <button id="time-switcher">Показать аналоговые часы</button>
             </div>
-            <div id="current-date">
-                <span id="years"></span>/
-                <span id="months"></span>/
-                <span id="days"></span>
+
+            <div id="current-time">
+                <div id="full-time"></div>
+                <div id="clock">
+                    <span id="hours"></span>:
+                    <span id="minutes"></span>:
+                    <span id="seconds"></span>
+                </div>
+                <div id="current-date">
+                    <span id="years"></span>/
+                    <span id="months"></span>/
+                    <span id="days"></span>
+                </div>
+                <div id="day-of-week"></div>
+                <div class="controls">
+                    <input type="checkbox" id="show-date"><label for="show-date">Показать дату</label>
+                    <input type="checkbox" id="show-weekday"><label for="show-weekday">Показать день недели</label>
+                </div>
             </div>
-            <div id="day-of-week"></div>
-            <input type="checkbox" id="show-date"><label for="show-date">Показать дату</label>
-            <input type="checkbox" id="show-weekday"><label for="show-weekday">Показать день недели</label>
-        </div>
+
+            <div id="analog-clock-container" class="clock-container" style="display: none;">
+                <div class="clock">
+                    <!-- Насечки -->
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <!-- Стрелки -->
+                    <div class="hour-hand"></div>
+                    <div class="minute-hand"></div>
+                    <div class="second-hand"></div>
+                </div>
+            </div>
+        </details>
     </main>
 
     <script src="events.js"></script>
