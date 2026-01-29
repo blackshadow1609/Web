@@ -9,7 +9,7 @@
 </head>
 <body class="white">
     <header id="header">
-        <div>Header</div>
+        <div>Координаты мыши:</div>
         <span id="mouse"></span>
         <div>
             <label for="delay">Delay: </label>
@@ -22,7 +22,7 @@
     <!--------------------------------------------------------------------------------------->
     <main>
         <h1>Events</h1>
-
+        <hr>
         <details>
             <summary>Image & Color</summary>
             <div id="photo-and-color">
@@ -45,8 +45,8 @@
             </div>
         </details>
         <!--------------------------------------------------------------------------------------->
+        <hr>
         <details>
-            <h2>Arrays</h2>
             <summary>Arrays</summary>
             <script>
                 let arr = [3, 5, 8, 13, 21];
@@ -93,23 +93,43 @@
             </script>
         </details>
         <!--------------------------------------------------------------------------------------->
-        <h2>Time</h2>
-        <div id="current-time">
-            <div id="full-time"></div>
-            <div id="clock">
-                <span id="hours"></span>:
-                <span id="minutes"></span>:
-                <span id="seconds"></span>
+        <hr>
+        <details>
+            <summary>Time</summary>
+            <div id="current-time">
+                <div id="full-time"></div>
+                <div id="clock">
+                    <span id="hours"></span>:
+                    <span id="minutes"></span>:
+                    <span id="seconds"></span>
+                </div>
+                <div id="current-date">
+                    <span id="years"></span>/
+                    <span id="months"></span>/
+                    <span id="days"></span>
+                </div>
+                <div id="day-of-week"></div>
+                <input type="checkbox" id="show-date"><label for="show-date">Показать дату</label>
+                <input type="checkbox" id="show-weekday"><label for="show-weekday">Показать день недели</label>
             </div>
-            <div id="current-date">
-                <span id="years"></span>/
-                <span id="months"></span>/
-                <span id="days"></span>
+        </details>
+        <hr>
+        <details>
+            <summary>CountDown Timer</summary>
+            <div id="countdown-timer">
+                <input type="date" id="target-date" value="2026-01-31">
+                <input type="time" id="target-time" value="16:30">
+                <input type="button" id="btn-start" value="Start">
             </div>
-            <div id="day-of-week"></div>
-            <input type="checkbox" id="show-date"><label for="show-date">Показать дату</label>
-            <input type="checkbox" id="show-weekday"><label for="show-weekday">Показать день недели</label>
-        </div>
+            <div id="debug">
+                <div id="target-date-value"></div>
+                <div id="target-time-value"></div>
+                <div id="current-time-value"></div>
+                <div id="duration"></div>
+                <div id="timestamp"></div>
+            </div>
+        </details>
+        <hr>
     </main>
 
     <script src="events.js"></script>
