@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="icon" href="/javascript.ico">
+    <link rel="stylesheet" href="timer.css">
+</head>
+<body class="white">
+    <header id="header">
+        <div>Координаты мыши:</div>
+        <span id="mouse"></span>
+        <div>
+            <label for="delay">Delay: </label>
+            <input type="number" id="delay" min="1" max="5" value="3">
+            <button onclick="switchBackground()" style="background: none; border: none; cursor: pointer;">
+                <img src="image/moon.png" id="switch-background" alt="Переключить тему">
+            </button>
+        </div>
+    </header>
+    <!--------------------------------------------------------------------------------------->
+    <main>
+        <h1>Countdown timer</h1>
+        <hr>
+
+        <details>
+            <summary>CountDown Timer</summary>
+            <div id="countdown-timer">
+                <input type="date" id="target-date" value="2026-01-31">
+                <input type="time" id="target-time" value="16:30">
+                <input type="button" id="btn-start" value="Start">
+            </div>
+            <div id="debug">
+                <div id="target-date-value"></div>
+                <div id="target-time-value"></div>
+                <div id="current-time-value"></div>
+                <div id="duration"></div>
+                <div id="timestamp"></div>
+            </div>
+            <div id="display">
+                <div class="time-block">
+                    <div id="years" class="time-unit">00</div>
+                    <div class="time-marker">ЛЕТ</div>
+                </div>
+                <div class="time-block">
+                    <div id="months" class="time-unit">00</div>
+                    <div class="time-marker">МЕСЯЦЕВ</div>
+                </div>
+                <div class="time-block">
+                    <div id="days" class="time-unit">00</div>
+                    <div class="time-marker">ДНЕЙ</div>
+                </div>
+                <div class="time-block">
+                    <div id="hours" class="time-unit">00</div>
+                    <div class="time-marker">ЧАСОВ</div>
+                </div>
+                <div class="time-block">
+                    <div id="minutes" class="time-unit">00</div>
+                    <div class="time-marker">МИНУТ</div>
+                </div>
+                <div class="time-block">
+                    <div id="seconds" class="time-unit">00</div>
+                    <div class="time-marker">СЕКУНД</div>
+                </div>
+            </div>
+        </details>
+        <hr>
+    </main>
+
+    <script src="timer.js"></script>
+
+    <audio id="tick-sound" preload="auto">
+        <source src="sounds/tick-tock.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <audio id="alarm-sound" preload="auto">
+        <source src="sounds/chasy_008.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+</body>
+</html>

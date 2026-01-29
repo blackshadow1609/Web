@@ -1,0 +1,118 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.0);
+    background-blend-mode: lighten;
+    font-family: 'Roboto Condensed';
+}
+
+h1 {
+    font-size: 40px;
+}
+
+summary {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+input {
+    font-size: 20px;
+    margin: 15px;
+}
+/*------------------------------------------------------*/
+.dark, .white {
+    transition-property: color, background;
+    transition-timing-function: ease;
+}
+
+.dark {
+    color: #C8C8C8;
+    background-image: url('image/fone_site_black_1.jpg');
+    background-attachment: fixed;
+}
+
+    .dark #switch-background {
+        filter: brightness(0) invert(1);
+    }
+
+.white {
+    color: black;
+    background-image: url('image/fone_site_white.jpg');
+    background-attachment: fixed;
+}
+
+#header {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#switch-background {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin: 0px 16px;
+}
+
+/*----------------------------------------------------------------*/
+
+details {
+    font-size: 24px;
+}
+
+/*----------------------------------------------------------------*/
+#debug > div {
+    width:100%;
+    height:5%;
+}
+
+#display {
+    border: solid 1px cornflowerblue;
+    margin: 20px 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.time-block {
+    border: solid 3px;
+    border-radius: 10px;
+    width: 130px; 
+    min-width: 120px;
+    box-shadow: 0px 0px 15px 5px cornflowerblue;
+    flex: 1;
+}
+
+.time-unit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: aliceblue;
+    height: 148px;
+    background-color: gray;
+    border-radius: 7px 7px 0 0;
+}
+.time-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    height: 40px; 
+    font-size: 16px;
+    border-radius: 0 0 7px 7px;
+    text-align: center;
+    padding: 5px;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
