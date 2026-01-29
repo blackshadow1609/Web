@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="icon" href="/javascript.ico">
+    <link rel="stylesheet" href="time.css">
+</head>
+<body class="white">
+    <header id="header">
+        <div>Header</div>
+        <span id="mouse"></span>
+        <div>
+            <label for="delay">Delay: </label>
+            <input type="number" id="delay" min="1" max="5" value="3">
+            <button id="theme-switcher" style="background: none; border: none; cursor: pointer;">
+                <img src="image/moon.png" id="switch-background" alt="Переключить тему" aria-label="Переключить светлую/темную тему">
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <h1>Time</h1>
+
+        <details open>
+            <summary>
+                <h2>Time</h2>
+            </summary>
+            <div id="time-switcher-container">
+                <button id="time-switcher">Показать аналоговые часы</button>
+            </div>
+
+            <div id="current-time">
+                <div id="full-time"></div>
+                <div id="clock">
+                    <span id="hours"></span>:
+                    <span id="minutes"></span>:
+                    <span id="seconds"></span>
+                </div>
+                <div id="current-date">
+                    <span id="years"></span>/
+                    <span id="months"></span>/
+                    <span id="days"></span>
+                </div>
+                <div id="day-of-week"></div>
+                <div class="controls">
+                    <input type="checkbox" id="show-date"><label for="show-date">Показать дату</label>
+                    <input type="checkbox" id="show-weekday"><label for="show-weekday">Показать день недели</label>
+                </div>
+            </div>
+
+            <div id="analog-clock-container" class="clock-container" style="display: none;">
+                <div class="clock">
+                    <!-- Насечки -->
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <div class="hour-mark"></div>
+                    <!-- Стрелки -->
+                    <div class="hour-hand"></div>
+                    <div class="minute-hand"></div>
+                    <div class="second-hand"></div>
+                </div>
+            </div>
+        </details>
+    </main>
+
+    <script src="time.js"></script>
+</body>
+</html>
