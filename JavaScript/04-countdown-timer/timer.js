@@ -71,7 +71,7 @@ function toggleSound() {
     soundEnabled = !soundEnabled;
     const soundButton = document.getElementById("sound-toggle");
     if (soundButton) {
-        soundButton.textContent = soundEnabled ? "🔊 Звук ВКЛ" : "🔇 Звук ВЫКЛ";
+        soundButton.textContent = soundEnabled ? "Звук ВКЛ" : "Звук ВЫКЛ";
     }
 }
 document.getElementById("btn-start").onclick = function startCountdownTimer() {
@@ -126,12 +126,9 @@ function tickCountdown() {
         return;
     }
 
-    let targetDateValue = new Date(targetDateControl.value);
-    let targetTimeValue = new Date(targetTimeControl.value);
+    let targetDateTime = new Date(targetDateControl.value + 'T' + targetTimeControl.value + ':00');
+    /*targetDateTime = new Date(targetDateTime.getTime() - targetDateTime.getTimezoneOffset() * 60000);*/
 
-    let targetDateTime = new Date(targetDateValue);
-    let timeParts = targetTimeControl.value.split(':');
-    targetDateTime.setHours(parseInt(timeParts[0]), parseInt(timeParts[1]), 0, 0);
 
     let duration = targetDateTime - now;
 
@@ -170,20 +167,46 @@ function tickCountdown() {
         return;
     }
 
-    const totalSeconds = Math.floor(duration / 1000);
+    let years = 0, months = 0, days = 0, hours = 0, minutes = 0, seconds = 0;
 
-    const secondsPerYear = 365.25 * 24 * 60 * 60;
-    const years = Math.floor(totalSeconds / secondsPerYear);
-    const remainingAfterYears = totalSeconds % secondsPerYear;
+    if (duration > 0) {
+        const tempNow = new Date(now);
 
-    const secondsPerMonth = 30.44 * 24 * 60 * 60;
-    const months = Math.floor(remainingAfterYears / secondsPerMonth);
-    const remainingAfterMonths = remainingAfterYears % secondsPerMonth;
+        years = targetDateTime.getFullYear() - tempNow.getFullYear();
 
-    const days = Math.floor(remainingAfterMonths / 86400);
-    const hours = Math.floor((remainingAfterMonths % 86400) / 3600);
-    const minutes = Math.floor((remainingAfterMonths % 3600) / 60);
-    const seconds = remainingAfterMonths % 60;
+        months = targetDateTime.getMonth() - tempNow.getMonth();
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        const dateAfterYearsMonths = new Date(tempNow);
+        dateAfterYearsMonths.setFullYear(
+            tempNow.getFullYear() + years,
+            tempNow.getMonth() + months,
+            tempNow.getDate()
+        );
+
+        if (dateAfterYearsMonths > targetDateTime) {
+            months--;
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            dateAfterYearsMonths.setMonth(dateAfterYearsMonths.getMonth() - 1);
+        }
+
+        const daysDiff = Math.floor((targetDateTime - dateAfterYearsMonths) / (1000 * 60 * 60 * 24));
+        days = daysDiff;
+
+        const dateAfterDays = new Date(dateAfterYearsMonths);
+        dateAfterDays.setDate(dateAfterDays.getDate() + days);
+
+        const remainingMs = targetDateTime - dateAfterDays;
+        hours = Math.floor(remainingMs / (1000 * 60 * 60));
+        minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((remainingMs % (1000 * 60)) / 1000);
+    }
 
     if (document.getElementById("years")) {
         document.getElementById("years").textContent = years.toString().padStart(2, '0');
@@ -195,11 +218,11 @@ function tickCountdown() {
     }
 
     if (document.getElementById("target-date-value")) {
-        document.getElementById("target-date-value").textContent = targetDateValue;
-        document.getElementById("target-time-value").textContent = targetTimeValue;
-        document.getElementById("current-time-value").textContent = now;
-        document.getElementById("duration").textContent = duration;
-        document.getElementById("timestamp").textContent = totalSeconds;
+        document.getElementById("target-date-value").textContent = targetDateTime.toLocaleDateString();
+        document.getElementById("target-time-value").textContent = targetDateTime.toLocaleTimeString();
+        document.getElementById("current-time-value").textContent = now.toLocaleString();
+        document.getElementById("duration").textContent = duration + " мс";
+        document.getElementById("timestamp").textContent = Math.floor(duration / 1000) + " сек";
     }
 }
 

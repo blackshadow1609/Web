@@ -50,7 +50,8 @@ document.addEventListener
     );
 /*----------------------------------------------------------------------------------------*/
 function addLeadingZero(number) {
-    return number < 10 ? "0" + number : number;
+
+    return number < 10 ? "0" + `${number}` : `${number}`;
 }
 document.body.onload = function tick_timer() {
     let time = new Date();
@@ -85,6 +86,7 @@ document.getElementById("btn-start").onclick = function startCountdownTimer() {
     else {
         btnStart.value = "Start";
         targetDate.disabled = targetTime.disabled = false;
+        clearTimeout(tickCountdown);
     }
 }
 function tickCountdown() {
@@ -124,5 +126,80 @@ function tickCountdown() {
     const SECONDS_PER_MONTH = SECONDS_PER_DAY * DAYS_PER_MONTH;
     const SECONDS_PER_YEAR = SECONDS_PER_DAY * 365 + SECONDS_PER_HOUR * 6;
 
-    setTimeout(tickCountdown, 100);
+    let time_of_day = timestamp % SECONDS_PER_DAY;
+    let date = Math.floor(timestamp / SECONDS_PER_DAY);
+    date = date * SECONDS_PER_DAY;
+
+    let years = Math.floor(date / SECONDS_PER_YEAR);
+    if (years > 0) {
+        date = date % SECONDS_PER_YEAR;
+        let years_unit = document.getElementById("years-unit");
+        if (years_unit == null) {
+            let display = document.getElementById("display");
+            display.prepend(createTimeBlock("years", addLeadingZero(years)));
+        }
+        else years_unit.innerHTML = addLeadingZero(years);
+    }
+    else removeTimeBlock("years");
+
+    let months = Math.floor(date / SECONDS_PER_MONTH);
+    if (months > 0) {
+        let display = document.getElementById("display");
+        date = date % SECONDS_PER_MONTH;
+
+        let months_unit = documend.getElementById("months-unit");
+        if (months_unit == null) {
+            months_block = createTimeBlock("months", addLeadingZero(months));
+            let hours_block = document.getElementById("hours-unit").parentElement;
+            hours_block.before(months_block);
+        }
+        else months_unit.innerHTML = addLeadingZero(months);
+    }
+
+    let hours = Math.floor(time_of_day / SECONDS_PER_HOUR);
+    if (hours > 0) time_of_day = (time_of_day % (SECONDS_PER_HOUR));
+
+    let minutes = Math.floor(time_of_day / SECONDS_PER_MINUTE);
+    if (minutes > 0) time_of_day = (time_of_day % SECONDS_PER_MINUTE);
+
+    let seconds = Math.floor(time_of_day);
+
+    document.getElementById("hours-unit").innerHTML = addLeadingZero(hours);
+    document.getElementById("minutes-unit").innerHTML = addLeadingZero(minutes);
+    document.getElementById("seconds-unit").innerHTML = addLeadingZero(seconds);
+
+    if (timestamp > 0 && document.getElementById("btn-start").value === "Stop")
+        setTimeout(tickCountdown, 100);
 }
+function createTimeBlock(name, value) {
+    let time_block = document.createElement("div");
+    time_block.className = "time-block";
+
+    let unit = document.createElement("div");
+    unit.id = `${name}-unit`;
+    unit.className = "time-unit";
+    document.getElementById("value-type").innerHTML = typeof (value);
+    unit.innerHTML = addLeadingZero(value);
+
+    let marker = document.createElement("div");
+    marker.id = `${name}-marker`;
+    marker.className = "time-marker";
+    marker.innerHTML = name.charAt(0).toUpperCase() + name.slice(1);
+
+    time_block.prepend(unit);
+    time_block.append(marker);
+
+    return time_block;
+}
+function removeTimeBlock(name) {
+    let unit = document.getElementById(`${name}-unit`);
+    if (unit != null) {
+        let block = unit.parentElement;
+        let block_parent = block.parentElement;
+        display.removeChild(block);
+    }
+    
+}
+
+
+

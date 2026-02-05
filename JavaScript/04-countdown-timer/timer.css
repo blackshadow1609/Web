@@ -84,10 +84,11 @@ details {
 .time-block {
     border: solid 3px;
     border-radius: 10px;
-    width: 130px; 
+    width: 130px;
     min-width: 120px;
     box-shadow: 0px 0px 15px 5px cornflowerblue;
     flex: 1;
+    
 }
 
 .time-unit {
@@ -99,6 +100,8 @@ details {
     height: 148px;
     background-color: gray;
     border-radius: 7px 7px 0 0;
+    font-size: 90px;
+    font-weight: 800;
 }
 .time-marker {
     display: flex;
@@ -107,12 +110,13 @@ details {
     border: solid 1px;
     background-color: cornflowerblue;
     color: aliceblue;
-    height: 40px; 
-    font-size: 16px;
+    height: 40px;
+    font-size: 25px;
     border-radius: 0 0 7px 7px;
     text-align: center;
     padding: 5px;
     word-wrap: break-word;
     line-height: 1.2;
+    font-weight: 400;
 }
 
