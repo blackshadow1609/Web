@@ -144,13 +144,40 @@
                     <div id="seconds-marker" class="time-marker">Seconds</div>
                 </div>
             </div>
+            <hr>
+            <div>
+                <audio controls id="player" style="width: 100%">
+                    <source src="sound/Accept_-_All_Or_Nothing.mp3">
+                </audio>
+            </div>
+            <div id="audio-selector" style="margin: 25px 0;">
+                <label for="audio-track">Выберите мелодию: </label>
+                <select id="audio-track" onchange="changeAudioTrack()">
+                    <option value="">-- Выберите мелодию --</option>
+                    <option value="sound/Accept_-_Balls_To_The_Wall.mp3">Balls To The Wall</option>
+                    <option value="sound/Accept_-_Fast_As_A_Shark.mp3">Fast As A Shark</option>
+                    <option value="sound/Accept_-_Breaker.mp3">Breaker</option>
+                    <option value="sound/Accept_-_Breaking_Up_Again.mp3">Breaking Up Again</option>
+                    <option value="sound/Accept_-_Burning.mp3">Burning</option>
+                    <option value="sound/Accept_-_Cant_Stand_The_Night.mp3">Cant Stand The Night</option>
+                    <option value="sound/Accept_-_All_Or_Nothing.mp3">All Or Nothing</option>
+                </select>
+            </div>
+
+            <script>
+                function changeAudioTrack() {
+                    const select = document.getElementById('audio-track');
+                    const player = document.getElementById('player');
+                    const source = player.querySelector('source');
+
+                    if (select.value) {
+                        source.src = select.value;
+                        player.load();
+                        player.play(); 
+                    }
+                }
+            </script>
         </details>
-        <hr>
-        <div>
-            <audio controls id="player" style="width: 100%">
-                <source src="sound/Accept/Accept_-_All_Or_Nothing_64458669.mp3">
-            </audio>
-        </div>
         <hr>
     </main>
 

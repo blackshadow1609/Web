@@ -158,4 +158,19 @@ pre {
     background-color: cornflowerblue;
     color: aliceblue;
 }
-
+/*-----------------------------------------*/
+#audio-track {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 300px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}

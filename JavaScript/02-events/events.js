@@ -52,7 +52,6 @@ document.addEventListener
 function addLeadingZero(number) {
 
     return number < 10 ? "0" + `${number}` : `${number}`;
-    /*return number < 10 ? "0" + number : number;*/
 }
 document.body.onload = function tick_timer() {
     let time = new Date();
@@ -82,6 +81,7 @@ document.getElementById("btn-start").onclick = function startCountdownTimer() {
     if (btnStart.value === "Start") {
         btnStart.value = "Stop";
         targetDate.disabled = targetTime.disabled = true;
+        resetDisplay();
         tickCountdown();
     }
     else {
@@ -135,76 +135,78 @@ function tickCountdown() {
     date = date * SECONDS_PER_DAY;
 
     /*---------------Даты------------------------*/
+    const blockOrder = ['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
+    const display = document.getElementById("display");
+
+    let values = {};
+
     let years = Math.floor(date / SECONDS_PER_YEAR);
+    values.years = years;
     if (years > 0) {
         date = date % SECONDS_PER_YEAR;
-        let years_unit = document.getElementById("years-unit");
-        if (years_unit == null) {
-            //let display = document.getElementById("display");
-            //display.prepend(createTimeBlock("years", addLeadingZero(years)));
-            let years_block = createTimeBlock("years", years);
-            let hours_block = document.getElementById("hours-unit").parentElement;
-            hours_block.before(years_block);
-        }
-        else years_unit.innerHTML = addLeadingZero(years);
     }
-    else removeTimeBlock("years");
 
     let months = Math.floor(date / SECONDS_PER_MONTH);
+    values.months = months;
     if (months > 0) {
-        /*let display = document.getElementById("display");*/
         date = date % SECONDS_PER_MONTH;
-
-        let months_unit = document.getElementById("months-unit");
-        if (months_unit == null) {
-            months_block = createTimeBlock("months", addLeadingZero(months));
-            let hours_block = document.getElementById("hours-unit").parentElement;
-            hours_block.before(months_block);
-        }
-        else months_unit.innerHTML = addLeadingZero(months);
     }
-    else removeTimeBlock("months");
 
     let weeks = Math.floor(date / SECONDS_PER_WEEK);
+    values.weeks = weeks;
     if (weeks > 0) {
-        let weeks_unit = document.getElementById("weeks-unit");
         date = date % SECONDS_PER_WEEK;
-        if (weeks_unit == null) {
-            weeks_block = createTimeBlock("weeks", addLeadingZero(weeks));
-            let hours_block = document.getElementById("hours-unit").parentElement;
-            hours_block.before(weeks_block);
-        }
-        else weeks_unit.innerHTML = addLeadingZero(weeks);
     }
-    else removeTimeBlock("weeks");
 
     let days = Math.floor(date / SECONDS_PER_DAY);
-    if (days > 0) {
-        let days_unit = document.getElementById("days-unit");
-        /*date = date % SECONDS_PER_DAY;*/
-        if (days_unit == null) {
-            days_block = createTimeBlock("days", addLeadingZero(days));
-            let hours_block = document.getElementById("hours-unit").parentElement;
-            hours_block.before(days_block);
-        }
-        else days_unit.innerHTML = addLeadingZero(days);
-    }
-    else removeTimeBlock("days");
+    values.days = days;
 
     /*---------------Часы------------------------*/
     let hours = Math.floor(time_of_day / SECONDS_PER_HOUR);
+    values.hours = hours;
     if (hours > 0) time_of_day = (time_of_day % (SECONDS_PER_HOUR));
 
     let minutes = Math.floor(time_of_day / SECONDS_PER_MINUTE);
+    values.minutes = minutes;
     if (minutes > 0) time_of_day = (time_of_day % SECONDS_PER_MINUTE);
 
     let seconds = Math.floor(time_of_day);
+    values.seconds = seconds;
 
-    document.getElementById("hours-unit").innerHTML = addLeadingZero(hours);
-    document.getElementById("minutes-unit").innerHTML = addLeadingZero(minutes);
-    document.getElementById("seconds-unit").innerHTML = addLeadingZero(seconds);
+    for (let i = 0; i < blockOrder.length; i++) {
+        const blockName = blockOrder[i];
+        const value = values[blockName];
 
-    /*if (timestamp > 0 && document.getElementById("btn-start").value === "Stop")*/
+        if (value > 0 || ['hours', 'minutes', 'seconds'].includes(blockName)) {
+            let unit = document.getElementById(`${blockName}-unit`);
+            if (unit) {
+                unit.innerHTML = addLeadingZero(value);
+            } else {
+                let newBlock = createTimeBlock(blockName, value);
+                let nextBlocks = blockOrder.slice(i + 1);
+
+                let insertBefore = null;
+                for (let j = 0; j < nextBlocks.length; j++) {
+                    let nextUnit = document.getElementById(`${nextBlocks[j]}-unit`);
+                    if (nextUnit) {
+                        insertBefore = nextUnit.parentElement;
+                        break;
+                    }
+                }
+
+                if (insertBefore) {
+                    display.insertBefore(newBlock, insertBefore);
+                } else {
+                    display.appendChild(newBlock);
+                }
+            }
+        } else {
+            if (!['hours', 'minutes', 'seconds'].includes(blockName)) {
+                removeTimeBlock(blockName);
+            }
+        }
+    }
+
     if (document.getElementById("btn-start").value === "Stop")
         setTimeout(tickCountdown, 100);
 
@@ -216,6 +218,7 @@ function tickCountdown() {
 function createTimeBlock(name, value) {
     let time_block = document.createElement("div");
     time_block.className = "time-block";
+    time_block.dataset.blockName = name; 
 
     let unit = document.createElement("div");
     unit.id = `${name}-unit`;
@@ -237,11 +240,20 @@ function removeTimeBlock(name) {
     let unit = document.getElementById(`${name}-unit`);
     if (unit != null) {
         let block = unit.parentElement;
-        let block_parent = block.parentElement;
-        display.removeChild(block);
+        if (block && block.parentElement) {
+            block.parentElement.removeChild(block);
+        }
     }
-    
+
 }
-
-
-
+function resetDisplay() {
+    let display = document.getElementById("display");
+    while (display.firstChild) {
+        display.removeChild(display.firstChild);
+    }
+    const basicBlocks = ['hours', 'minutes', 'seconds'];
+    basicBlocks.forEach(blockName => {
+        let block = createTimeBlock(blockName, 0);
+        display.appendChild(block);
+    });
+}
