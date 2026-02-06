@@ -1,0 +1,13 @@
+﻿#container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+}
+#animation {
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    background: red;
+    color: yellow;
+}

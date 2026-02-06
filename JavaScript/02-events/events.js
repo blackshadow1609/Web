@@ -244,7 +244,6 @@ function removeTimeBlock(name) {
             block.parentElement.removeChild(block);
         }
     }
-
 }
 function resetDisplay() {
     let display = document.getElementById("display");
