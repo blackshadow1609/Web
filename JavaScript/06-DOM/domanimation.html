@@ -1,19 +1,29 @@
 ﻿<!DOCTYPE html>
-
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>DOM Ani</title>
+    <title>DOM Animation</title>
     <link rel="icon" href="javascript.ico">
     <link rel="stylesheet" href="domanimation.css">
+
 </head>
 <body>
-    <h1>Document Object Model Animation</h1>
+    <div id="controls">
+        <button onclick="toggleMove()">Start/Stop</button>
+        <button onclick="stopMove()">Stop</button><br><br>
 
-    <div id="container" onclick="Move()">
-        <div id="animation">Document Object Model Animation</div>
+        <label>Скорость (кадров/сек): </label>
+        <input type="number" id="interval" min="1" max="120" value="60" /><br><br>
+
+        <label>Размер шрифта: </label>
+        <input type="number" id="fontSize" min="10" max="72" value="16"
+               onchange="updateFontSize()" /><br><br>
+
+        <button onclick="changeSettings()">Применить</button>
     </div>
-    <input type="number" id="interval" min="1" max="60" value="5" /><lable for="interval">interval</lable>
+
+    <div id="animation"></div>
+
     <script src="domanimation.js"></script>
 </body>
 </html>
