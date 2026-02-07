@@ -4,7 +4,7 @@ function GetWindowSize() {
     let window_height = window.innerHeight;
     document.getElementById("window-size").innerHTML = `Размер окна браузера: ${window_width}x${window_height}`;
 }
-function GetScreenProperties() {
+function GetScreenProperties() { 
     let screen_width = window.screen.width;
     let screen_height = window.screen.height;
     document.getElementById("screen-resolution").innerHTML = `${screen_width}x${screen_height}`;
