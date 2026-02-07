@@ -1,0 +1,22 @@
+﻿body {
+}
+
+.block {
+    width: 700px;
+    height: 8vh;
+    border: solid 1px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 32px;
+    margin: 25px;
+    
+}
+
+    .block > div {
+        padding: 5px;
+    }
+
+button {
+    height: 8vh;
+    width: 125px;
+}
