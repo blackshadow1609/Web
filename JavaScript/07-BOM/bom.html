@@ -15,7 +15,7 @@
         <button onclick="GetWindowSize()">Определить</button>
     </div>
     <h2>Screen</h2>
-    <div class="block" style="height: 15vh; align-items: center;">
+    <div class="block" style="height: 10vh; align-items: center;">
         <div>
             <div>Разрешение экрана:<span id="screen-resolution"></span></div>
             <div>Доступное разрешение экрана:<span id="screen-available-resolution"></span></div>
@@ -25,7 +25,7 @@
         <button onclick="GetScreenProperties()">Определить</button>
     </div>
     <h2>Location</h2>
-    <div class="block" style="height: 19vh; align-items: center;">
+    <div class="block" style="height: 12vh; align-items: center;">
         <div>
             <div>HREF:<span id="bom-href"></span></div>
             <div>Hostname:<span id="bom-hostname"></span></div>
@@ -40,7 +40,20 @@
         <input type="text" id="bom-url" style="width: 550px; text-align: center; font-size: 24px;">
         <button onclick="GoTo()">Перейти</button>
     </div>
+    <hr>
+    <h3>Navigator</h3>
+    <div>
+        <div id="navigator"></div>
+        <button onclick="document.getElementById('navigator').innerHTML = navigator.language">Определить</button>
+    </div>
+    <!--Использование устаревшего свойства navigator.appName
+    Это свойство всегда возвращает "Netscape" для совместимости и не несет полезной информации. Оно давно устарело.-->
 
+    <h3>History</h3>
+    <div style="display: flex; justify-content: space-between;">
+        <button onclick="window.history.back()">Назад</button>
+        <button onclick="window.history.forward()">Вперед</button>
+    </div>
     <script src="bom.js"></script>
 </body>
 </html>

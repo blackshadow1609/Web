@@ -2,12 +2,12 @@
 }
 
 .block {
-    width: 700px;
-    height: 8vh;
+    width: 500px;
+    height: 5vh;
     border: solid 1px;
     display: flex;
     justify-content: space-between;
-    font-size: 32px;
+    font-size: 20px;
     margin: 25px;
     
 }
@@ -17,6 +17,6 @@
     }
 
 button {
-    height: 8vh;
+    height: 5vh;
     width: 125px;
 }
